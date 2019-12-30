@@ -1,0 +1,56 @@
+<router-outlet></router-outlet>
+<app-header></app-header>
+<h2>Cadastrar Novo Candidato</h2>
+
+<section>
+    <div class="container">
+    <form method="POST" #formCandidato = "ngForm" (ngSubmit)="criar(formCandidato)">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome"
+            placeholder="Nome" class="form-control"
+            [(ngModel)] = "candidato.nome" required> 
+        </div>
+        <div class="form-group">
+            <label for="vagas">Cidade: </label>
+            <input type="text" id="cidade" name="cidade"
+            placeholder="Cidade" class="form-control"
+            [(ngModel)] = "candidato.cidade" required> 
+        </div>
+        <div class="form-group">
+            <label for="vagas">Id Exame: </label>
+            <input type="text" id="idexame" name="idexame"
+            placeholder="Exame" class="form-control"
+            [(ngModel)] = "candidato.idexame" required> 
+        </div>
+        <button type="submit" class="btn btn-success"
+        [disabled] = "formCandidato.invalid">Cadastrar</button>
+    </form>
+    </div>
+</section>
+
+<h2>Listagem dos Candidatos</h2>
+
+<table class="table">
+    <tr>
+        <td>Id</td>
+        <td>Nome</td>
+        <td>Cidade</td>
+    </tr>
+    <tr  *ngFor="let candidato of candidatos">
+        <td>{{candidato.id}}</td>
+        <td>{{candidato.nome}}</td>
+        <td>{{candidato.cidade}}</td>
+
+        <td>
+
+            <button type="submit" class="btn btn-warning" (click) = "atualizar(candidato)">
+                Atualizar
+            </button>
+
+            <button type="submit" class="btn btn-danger" (click) = "remover(candidato)">
+                Remover
+            </button>
+        </td>
+    </tr>
+</table>

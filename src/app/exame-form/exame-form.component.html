@@ -1,0 +1,26 @@
+<router-outlet></router-outlet>
+<app-header></app-header>
+<h2>Editar Exame</h2>
+
+<a [routerLink]="['/novoExame']">Novo</a>
+
+<section>
+    <div class="container">
+    <form method="POST" #formExame = "ngForm" (ngSubmit)="criar(formExame)">
+        <div class="form-group">
+            <label for="nome">Nome do Exame:</label>
+            <input type="text" id="nome" name="nome"
+            placeholder="Nome" class="form-control"
+            [(ngModel)]="exame.nome" required> 
+        </div>
+        <div class="form-group">
+            <label for="vagas">Número de Vagas:</label>
+            <input type="text" id="vagas" name="vagas"
+            placeholder="Vagas" class="form-control"
+            [(ngModel)]="exame.vagas" required> 
+        </div>
+        <button type="submit" class="btn btn-success"
+        [disabled] = "formExame.invalid">Cadastrar</button>
+    </form>
+    </div>
+</section>
