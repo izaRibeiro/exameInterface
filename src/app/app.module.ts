@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CandidatoFormComponent } from './candidato-form/candidato-form.component';
 import { HeaderComponent } from './header/header.component';
 import { ExameFormComponent } from './exame-form/exame-form.component';
+import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-listagem.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ExameFormComponent } from './exame-form/exame-form.component';
     ExameListagemComponent,
     CandidatoFormComponent,
     HeaderComponent,
-    ExameFormComponent
+    ExameFormComponent,
+    InscricaoListagemComponent
   ],
   imports: [
     BrowserModule,

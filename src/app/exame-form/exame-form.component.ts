@@ -121,6 +121,7 @@ export class ExameFormComponent implements OnInit {
         }, 
         error: (e)=>console.log(e)
       });
+      document.location.href = "http://localhost:4200/listagemExames";
   }
 
 }

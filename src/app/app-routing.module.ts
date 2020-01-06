@@ -3,13 +3,17 @@ import { ExameListagemComponent } from './exame-listagem/exame-listagem.componen
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CandidatoListagemComponent } from './candidato-listagem/candidato-listagem.component';
+import { CandidatoFormComponent } from './candidato-form/candidato-form.component';
+import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-listagem.component';
 
 
 const routes: Routes = [
   { path: 'listagemCandidatos', component: CandidatoListagemComponent },
   { path: 'listagemExames', component: ExameListagemComponent },
+  { path: 'listagemIncricao', component: InscricaoListagemComponent },
   { path : 'novoExame', component: ExameFormComponent },
-  { path : 'exames/:id', component: ExameFormComponent }
+  { path : 'exames/:id', component: ExameFormComponent },
+  { path : 'candidatos/:id', component: CandidatoFormComponent }
 ];
 
 @NgModule({

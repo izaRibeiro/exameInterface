@@ -22,4 +22,16 @@ export class CandidatoService {
     return this.http.delete(`${this.candidatoUrl}/${candidato.id}`);
   }
 
+  carregarPeloId(id){
+    return this.http.get(`${this.candidatoUrl}/${id}`);
+  }
+
+  update(id, candidato){
+    const url = `${this.candidatoUrl}/${id}`;
+
+    return this.http.put(url, candidato);
+  }
+
+
+
 }
