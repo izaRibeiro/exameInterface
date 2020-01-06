@@ -4,7 +4,6 @@ import { ExameService } from './../exame.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { relative } from 'path';
 
 @Component({
   selector: 'app-exame-listagem',

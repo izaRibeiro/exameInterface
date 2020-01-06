@@ -2,6 +2,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Exame } from './model/exame';
 
 @Injectable({
   providedIn: 'root'

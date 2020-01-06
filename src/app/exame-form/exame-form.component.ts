@@ -5,6 +5,7 @@ import { ExameService } from './../exame.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Exame } from '../model/exame';
 
 @Component({
   selector: 'app-exame-form',
@@ -13,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ExameFormComponent implements OnInit {
 
-  exame: any;
+  exame: Exame = new Exame();
   form: FormGroup;
   request: Request;
   id: number;
@@ -36,14 +37,14 @@ export class ExameFormComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    /*this.id = this.route.snapshot.paramMap.get('id');
+    this.id = +this.route.snapshot.paramMap.get('id');
     if(this.id != null){
       console.log('id: ' + this.id);
     }
     
     const exame = this.service.carregarPeloId(this.id);
     exame.subscribe(exame => {
-          this.updateForm(exame);
+          this.update(exame);
         });
 
    /* this.exameService.carregarPeloId(this.id).subscribe(res => {
@@ -61,14 +62,14 @@ export class ExameFormComponent implements OnInit {
           this.updateForm(exame);
         });
       }
-    );*/
+    );
 
     this.route.params.subscribe(
       (params: any) => {
         this.id = params['id'];
       });
 
-      this.http.get("http://localhost:5555/products").subscribe(
+      this.http.get("http://localhost:4200/exames").subscribe(
         (res: Response) => {
           //this.exames = res.json();
           for(var i = 0; i < this.exames.length ; i++) {
@@ -82,7 +83,7 @@ export class ExameFormComponent implements OnInit {
           }
         }
       )
-
+*/
 
     this.form = this.fb.group({
       id: [null], 
@@ -97,11 +98,12 @@ export class ExameFormComponent implements OnInit {
     }
   }
 
-  updateForm(exame){
-    this.form.patchValue({
-      id: exame.id,
-      nome: exame.nome
-    })
+  update(exame){
+    this.exame = exame;
+    // this.form.patchValue({
+    //   id: exame.id,
+    //   nome: exame.nome
+    // })
   }
 
   /*criar(formExame: FormGroup){
@@ -111,10 +113,14 @@ export class ExameFormComponent implements OnInit {
     });
   }*/
   editar(formExame: FormGroup){
-    /*this.exameService.carregarPeloId(this.exame).subscribe(resposta => {
-      this.exame.push(resposta);
-      formExame.reset();
-    });*/
+    debugger
+    this.exameService.update(this.id, this.exame)
+      .subscribe({
+        next: resp=>{
+          console.log('sucesso');
+        }, 
+        error: (e)=>console.log(e)
+      });
   }
 
 }
