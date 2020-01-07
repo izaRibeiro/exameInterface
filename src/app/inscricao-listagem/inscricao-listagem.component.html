@@ -4,44 +4,49 @@
 
 <section>
     <div class="container">
-    <form method="POST" #formExame = "ngForm" (ngSubmit)="criar(formExame)">
+    <form >
         <div class="form-group">
-            <label for="nome">Nome do Exame:</label>
-            <input type="text" id="nome" name="nome"
-            placeholder="Nome" class="form-control"
-            [(ngModel)]="exame.nome" required> 
+            <label for="candidato">Identificador do Candidato: </label>
+            <input type="text" 
+            id="candidato" 
+            name="candidato"
+            placeholder="Candidato" class="form-control"
+            [(ngModel)]="inscricao.candidato" required> 
         </div>
         <div class="form-group">
-            <label for="vagas">Número de Vagas:</label>
-            <input type="text" id="vagas" name="vagas"
-            placeholder="Vagas" class="form-control"
-            [(ngModel)]="exame.vagas" required> 
+            <label for="exame">Identificador do Exame: </label>
+            <input type="text" 
+            id="exame" 
+            name="exame"
+            placeholder="Exame" class="form-control"
+            [(ngModel)]="inscricao.exame" required> 
         </div>
         <button type="submit" class="btn btn-success"
-        [disabled] = "formExame.invalid">Cadastrar</button>
+        (click)="criar()" [disabled]="!inscricao.candidato || !inscricao.exame">Cadastrar</button>
     </form>
     </div>
 </section>
 
-<h2>Listagem dos Exames</h2>
+
+<h2>Listagem das Inscrições</h2>
 
 <table class="table">
     <tr>
-        <td>Id</td>
-        <td>Nome</td>
-        <td>Vagas</td>
+        <td>IdExame</td>
+        <td>IdCandidato</td>
+        <td>Nota</td>
     </tr>
-    <tr  *ngFor="let exame of exames">
-        <td>{{exame.id}}</td>
-        <td>{{exame.nome}}</td>
-        <td>{{exame.vagas}}</td>
+    <tr  *ngFor="let inscricao of inscricoes">
+        <td>{{inscricao.exame}}</td>
+        <td>{{inscricao.candidato}}</td>
+        <td>{{inscricao.nota}}</td>
 
 
-            <button type="submit" class="btn btn-warning" (click)="onEdit(exame.id)">
-                Atualizar
+            <button type="submit" class="btn btn-warning" (click)="onEdit(inscricao.exame, inscricao.candidato)">
+                Atualizar Nota
             </button>
 
-            <button type="submit" class="btn btn-danger" (click) = "remover(exame)">
+            <button type="submit" class="btn btn-danger" (click) = "remover(inscricao)">
                 Remover
             </button>
 

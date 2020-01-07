@@ -1,0 +1,20 @@
+<router-outlet></router-outlet>
+<app-header></app-header>
+<h2>Efetuar Edição da Nota</h2>
+
+<section>
+    <div class="container">
+    <form >
+        <div class="form-group">
+            <label for="nota">Nota: </label>
+            <input type="text" 
+            id="nota" 
+            name="nota"
+            placeholder="Nota" class="form-control"
+            [(ngModel)]="inscricao.nota" required> 
+        </div>
+        <button type="submit" class="btn btn-success"
+        (click)="criar()" [disabled]="!inscricao.candidato || !inscricao.exame">Atualizar Nota</button>
+    </form>
+    </div>
+</section>

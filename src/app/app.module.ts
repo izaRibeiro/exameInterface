@@ -16,6 +16,7 @@ import { CandidatoFormComponent } from './candidato-form/candidato-form.componen
 import { HeaderComponent } from './header/header.component';
 import { ExameFormComponent } from './exame-form/exame-form.component';
 import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-listagem.component';
+import { InscricaoFormComponent } from './inscricao-form/inscricao-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-lista
     CandidatoFormComponent,
     HeaderComponent,
     ExameFormComponent,
-    InscricaoListagemComponent
+    InscricaoListagemComponent,
+    InscricaoFormComponent
   ],
   imports: [
     BrowserModule,

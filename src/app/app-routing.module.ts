@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CandidatoListagemComponent } from './candidato-listagem/candidato-listagem.component';
 import { CandidatoFormComponent } from './candidato-form/candidato-form.component';
 import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-listagem.component';
+import { InscricaoFormComponent } from './inscricao-form/inscricao-form.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'listagemIncricao', component: InscricaoListagemComponent },
   { path : 'novoExame', component: ExameFormComponent },
   { path : 'exames/:id', component: ExameFormComponent },
-  { path : 'candidatos/:id', component: CandidatoFormComponent }
+  { path : 'candidatos/:id', component: CandidatoFormComponent },
+  { path : 'exameCandidato/:exame/:candidato', component: InscricaoFormComponent}
 ];
 
 @NgModule({

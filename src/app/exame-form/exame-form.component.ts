@@ -29,7 +29,6 @@ export class ExameFormComponent implements OnInit {
     private exameService: ExameService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    //private router: Router,
     
     private service: ExameService,
     private http: HttpClient
@@ -47,43 +46,6 @@ export class ExameFormComponent implements OnInit {
           this.update(exame);
         });
 
-   /* this.exameService.carregarPeloId(this.id).subscribe(res => {
-      this.request = {
-        nome: res.data.nome;
-      }
-    });*/
-
-   /* this.route.params.subscribe(
-      (params: any) => {
-        this.id = params['id'];
-        console.log(this.id);
-        const exame = this.service.carregarPeloId(id);
-        exame.subscribe(exame => {
-          this.updateForm(exame);
-        });
-      }
-    );
-
-    this.route.params.subscribe(
-      (params: any) => {
-        this.id = params['id'];
-      });
-
-      this.http.get("http://localhost:4200/exames").subscribe(
-        (res: Response) => {
-          //this.exames = res.json();
-          for(var i = 0; i < this.exames.length ; i++) {
-            if(parseInt(this.exames[i].id) === this.id) {
-              this.exist = true;
-              this.data = this.exames[i];
-              break;
-            } else {
-              this.exist = false;
-            }
-          }
-        }
-      )
-*/
 
     this.form = this.fb.group({
       id: [null], 
@@ -100,24 +62,16 @@ export class ExameFormComponent implements OnInit {
 
   update(exame){
     this.exame = exame;
-    // this.form.patchValue({
-    //   id: exame.id,
-    //   nome: exame.nome
-    // })
   }
 
-  /*criar(formExame: FormGroup){
-    this.exameService.criar(this.exame).subscribe(resposta => {
-      this.exames.push(resposta);
-      formExame.reset();
-    });
-  }*/
+
   editar(formExame: FormGroup){
     debugger
     this.exameService.update(this.id, this.exame)
       .subscribe({
         next: resp=>{
           console.log('sucesso');
+          alert("Exame editado com sucesso!");
         }, 
         error: (e)=>console.log(e)
       });
