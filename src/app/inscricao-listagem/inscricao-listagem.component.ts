@@ -35,11 +35,17 @@ export class InscricaoListagemComponent implements OnInit {
   }
 
   criar(){
-    this.inscricaoService.criar(this.inscricao).subscribe(resposta => {
-      this.inscricoes.push(resposta);
-      this.inscricao = new Inscricao();
-    });
+    this.inscricaoService.criar(this.inscricao).subscribe({
+      
+      next: resposta => {
+        this.inscricoes.push(resposta);
+        this.inscricao = new Inscricao();
+        alert("Inscrição cadastrado com sucesso!");
 
+      },
+      error: (e)=>console.log(e)
+    });
+    document.location.href = "http://localhost:4200/listagemIncricao";
   }
 
   remover(inscricao){

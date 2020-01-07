@@ -30,4 +30,11 @@ export class InscricaoService {
 
     return this.http.put(url, inscricao);
   }
+
+  adicionarNota(inscricao, idexame, idcandidato){
+    inscricao.exame = idexame;
+    inscricao.candidato = idcandidato;
+    return this.http.put(`${this.inscricaoUrl }/${idexame}/${idcandidato}` , inscricao);
+  }
+
 }

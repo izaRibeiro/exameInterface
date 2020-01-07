@@ -2,8 +2,6 @@
 <app-header></app-header>
 <h2>Editar Exame</h2>
 
-<a [routerLink]="['/novoExame']">Novo</a>
-
 <section>
     <div class="container">
     <form method="POST" #formExame = "ngForm" (ngSubmit)="editar(formExame)">

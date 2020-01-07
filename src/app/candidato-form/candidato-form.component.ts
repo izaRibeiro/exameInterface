@@ -37,10 +37,6 @@ export class CandidatoFormComponent implements OnInit {
   
   update(candidato){
     this.candidato = candidato;
-    // this.form.patchValue({
-    //   id: exame.id,
-    //   nome: exame.nome
-    // })
   }
 
   editar(){
@@ -48,6 +44,7 @@ export class CandidatoFormComponent implements OnInit {
       .subscribe({
         next: resp=>{
           console.log('sucesso');
+          alert("Candidato editado com sucesso!");
         }, 
         error: (e)=>console.log(e)
       });

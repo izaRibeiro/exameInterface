@@ -28,9 +28,15 @@ export class CandidatoListagemComponent implements OnInit {
   }
 
   criar(formCandidato: FormGroup){
-    this.candidatoService.criar(this.candidato).subscribe(resposta => {
-      this.candidatos.push(resposta);
-      formCandidato.reset();
+    this.candidatoService.criar(this.candidato).subscribe({
+      
+      next: resposta => {
+        this.candidatos.push(resposta);
+        formCandidato.reset();
+        alert("Candidato cadastrado com sucesso!");
+      },
+      error: (e)=>console.log(e)
+      
     });
   }
 

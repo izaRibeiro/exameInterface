@@ -14,7 +14,7 @@
             [(ngModel)]="inscricao.nota" required> 
         </div>
         <button type="submit" class="btn btn-success"
-        (click)="criar()" [disabled]="!inscricao.candidato || !inscricao.exame">Atualizar Nota</button>
+        (click)="adicionarNota(inscricao)">Atualizar Nota</button>
     </form>
     </div>
 </section>

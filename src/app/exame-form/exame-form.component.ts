@@ -66,7 +66,6 @@ export class ExameFormComponent implements OnInit {
 
 
   editar(formExame: FormGroup){
-    debugger
     this.exameService.update(this.id, this.exame)
       .subscribe({
         next: resp=>{

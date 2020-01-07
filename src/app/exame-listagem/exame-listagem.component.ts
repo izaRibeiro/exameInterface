@@ -31,9 +31,14 @@ export class ExameListagemComponent implements OnInit {
   }
 
   criar(formExame: FormGroup){
-    this.exameService.criar(this.exame).subscribe(resposta => {
-      this.exames.push(resposta);
-      formExame.reset();
+    this.exameService.criar(this.exame).subscribe({
+      
+      next: resposta => {
+        this.exames.push(resposta);
+        formExame.reset();
+        alert("Exame cadastrado com sucesso!");
+      },
+      error: (e)=>console.log(e)
     });
   }
 
@@ -42,9 +47,6 @@ export class ExameListagemComponent implements OnInit {
       document.location.href = "http://localhost:4200/listagemExames";
   }
 
-  editar(id){
-    this.router.navigate(['editar', id], { relativeTo: this.route});
-  }
 
   onEdit(id){
     this.router.navigate(['exames', id]);
