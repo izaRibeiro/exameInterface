@@ -3,6 +3,8 @@ import { Candidato } from '../model/candidato';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CandidatoService } from '../candidato.service';
+import { InscricaoFormComponent } from '../inscricao-form/inscricao-form.component';
+import { Inscricao } from '../model/inscricao';
 
 @Component({
   selector: 'app-candidato-form',
@@ -40,14 +42,20 @@ export class CandidatoFormComponent implements OnInit {
   }
 
   editar(){
-    this.candidatoService.update(this.id, this.candidato)
-      .subscribe({
-        next: resp=>{
-          console.log('sucesso');
-          alert("Candidato editado com sucesso!");
-        }, 
-        error: (e)=>console.log(e)
-      });
-      document.location.href = "http://localhost:4200/listagemCandidatos";
+      if(this.candidato.nome != null && this.candidato.cidade){
+        this.candidatoService.update(this.id, this.candidato)
+        .subscribe({
+          next: resp=>{
+            console.log('sucesso');
+            alert("Candidato editado com sucesso!");
+          }, 
+          error: (e)=>console.log(e)
+        });
+        document.location.href = "http://localhost:4200/listagemCandidatos";
+      }else{
+        alert("Não é possível efetuar a edição com campos vazios");
+      }
+
+      
   }
 }

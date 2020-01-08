@@ -30,16 +30,20 @@ export class ExameListagemComponent implements OnInit {
     this.exameService.listar().subscribe(dados => this.exames = dados);
   }
 
-  criar(formExame: FormGroup){
-    this.exameService.criar(this.exame).subscribe({
-      
-      next: resposta => {
-        this.exames.push(resposta);
-        formExame.reset();
-        alert("Exame cadastrado com sucesso!");
-      },
-      error: (e)=>console.log(e)
-    });
+  criar(){
+    if(this.exame.nome != null && this.exame.vagas != null){
+      this.exameService.criar(this.exame).subscribe({
+        
+        next: resposta => {
+          this.exames.push(resposta);
+          alert("Exame cadastrado com sucesso!");
+        },
+        error: (e)=>console.log(e)
+      });
+
+   }else{
+    alert("Não é possível efetuar o cadastro com campos vazios");
+   }
   }
 
   remover(exame){

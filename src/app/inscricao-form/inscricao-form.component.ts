@@ -38,15 +38,19 @@ export class InscricaoFormComponent implements OnInit {
   adicionarNota(inscricao){
     console.log('nota: ' + inscricao.nota);
     
-    this.inscricaoService.adicionarNota(this.inscricao, this.idexame, this.idcandidato)
-    .subscribe({
-      next: resp=>{
-        console.log('sucesso');
-        alert("Nota editada com sucesso!");
-      }, 
-      error: (e)=>console.log(e)
-    });
-
-    document.location.href = "http://localhost:4200/listagemIncricao";
+    if(inscricao.nota != null){
+      this.inscricaoService.adicionarNota(this.inscricao, this.idexame, this.idcandidato)
+      .subscribe({
+        next: resp=>{
+          console.log('sucesso');
+          alert("Nota editada com sucesso!");
+        }, 
+        error: (e)=>console.log(e)
+      });
+      document.location.href = "http://localhost:4200/listagemIncricao";
+    }else{
+      alert("Não é possível efetuar o cadastro com um campo vazio");
+    }
+    
   }
 }

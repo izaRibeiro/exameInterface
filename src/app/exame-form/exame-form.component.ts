@@ -66,15 +66,18 @@ export class ExameFormComponent implements OnInit {
 
 
   editar(formExame: FormGroup){
-    this.exameService.update(this.id, this.exame)
-      .subscribe({
-        next: resp=>{
-          console.log('sucesso');
-          alert("Exame editado com sucesso!");
-        }, 
-        error: (e)=>console.log(e)
-      });
-      document.location.href = "http://localhost:4200/listagemExames";
+    if(this.exame.nome != null && this.exame.vagas != null){
+      this.exameService.update(this.id, this.exame)
+        .subscribe({
+          next: resp=>{
+            console.log('sucesso');
+            alert("Exame editado com sucesso!");
+          }, 
+          error: (e)=>console.log(e)
+        });
+        document.location.href = "http://localhost:4200/listagemExames";
+    }else{
+      alert("Não é possível efetuar a edição com campos vazios");
+    }
   }
-
 }

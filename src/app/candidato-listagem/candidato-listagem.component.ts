@@ -27,17 +27,21 @@ export class CandidatoListagemComponent implements OnInit {
     this.candidatoService.listar().subscribe(dados => this.candidatos = dados);
   }
 
-  criar(formCandidato: FormGroup){
-    this.candidatoService.criar(this.candidato).subscribe({
+  criar(){
+    if(this.candidato.nome != null && this.candidato.cidade != null){
+      this.candidatoService.criar(this.candidato).subscribe({
       
-      next: resposta => {
-        this.candidatos.push(resposta);
-        formCandidato.reset();
-        alert("Candidato cadastrado com sucesso!");
-      },
-      error: (e)=>console.log(e)
-      
-    });
+        next: resposta => {
+          this.candidatos.push(resposta);
+          alert("Candidato cadastrado com sucesso!");
+        },
+        error: (e)=>console.log(e)
+        
+      });
+    }else{
+      alert("Não é possível efetuar o cadastro com campos vazios");
+    }
+
   }
 
   remover(candidato){
