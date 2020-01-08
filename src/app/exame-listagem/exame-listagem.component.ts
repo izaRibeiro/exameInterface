@@ -47,8 +47,8 @@ export class ExameListagemComponent implements OnInit {
   }
 
   remover(exame){
-      this.exameService.remover(exame).subscribe();
-      document.location.href = "http://localhost:4200/listagemExames";
+      this.exameService.remover(exame).subscribe(() => this.listar());
+
   }
 
 

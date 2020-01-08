@@ -45,8 +45,7 @@ export class CandidatoListagemComponent implements OnInit {
   }
 
   remover(candidato){
-    this.candidatoService.remover(candidato).subscribe();
-    document.location.href = "http://localhost:4200/listagemCandidatos";
+    this.candidatoService.remover(candidato).subscribe(() => this.listar());
   }
 
   onEdit(id){

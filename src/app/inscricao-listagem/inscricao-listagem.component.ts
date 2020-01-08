@@ -8,7 +8,6 @@ import { ThrowStmt } from '@angular/compiler';
 import { Candidato } from '../model/candidato';
 import { Observable } from 'rxjs';
 import { Exame } from '../model/exame';
-import { runInThisContext } from 'vm';
 import { ExameService } from '../exame.service';
 import { CandidatoService } from '../candidato.service';
 
@@ -53,25 +52,24 @@ export class InscricaoListagemComponent implements OnInit {
   criar(){
 
     if(this.inscricao.candidato != null && this.inscricao.exame){
-      this.inscricaoService.criar(this.inscricao).subscribe({
-        
-        next: resposta => {
-          this.inscricoes.push(resposta);
+      this.inscricaoService.criar(this.inscricao).subscribe(
+        () => {
+          this.listar();
           this.inscricao = new Inscricao();
-          alert("Inscrição cadastrado com sucesso!");
-
         },
-        error: (e)=>console.log(e)
-      });
-      document.location.href = "http://localhost:4200/listagemIncricao";
+        error => {
+          console.log(error);
+        }
+      );
      }else{
       alert("Não é possível efetuar o cadastro com campos vazios");
     }
   }
 
   remover(inscricao){
-    this.inscricaoService.remover(inscricao).subscribe();
-    document.location.href = "http://localhost:4200/listagemIncricao";
+    this.inscricaoService.remover(inscricao).subscribe(() => {
+      this.listar();
+    });
   }
 
   onEdit(exame, candidato){
