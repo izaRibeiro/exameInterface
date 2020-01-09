@@ -1,7 +1,8 @@
+import { CandidatoListagemComponent } from './../candidato-listagem/candidato-listagem.component';
 import { Component, OnInit } from '@angular/core';
 import { Candidato } from '../model/candidato';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CandidatoService } from '../candidato.service';
 import { InscricaoFormComponent } from '../inscricao-form/inscricao-form.component';
 import { Inscricao } from '../model/inscricao';
@@ -22,6 +23,7 @@ export class CandidatoFormComponent implements OnInit {
     private candidatoService: CandidatoService,
     private route: ActivatedRoute,
     private service: CandidatoService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,16 +48,18 @@ export class CandidatoFormComponent implements OnInit {
         this.candidatoService.update(this.id, this.candidato)
         .subscribe({
           next: resp=>{
-            console.log('sucesso');
             alert("Candidato editado com sucesso!");
+            this.candidatoService.listar();
+            this.router.navigateByUrl('listagemCandidatos');
           }, 
           error: (e)=>console.log(e)
         });
-        document.location.href = "http://localhost:4200/listagemCandidatos";
+        
       }else{
         alert("Não é possível efetuar a edição com campos vazios");
       }
-
-      
   }
+
+
+
 }

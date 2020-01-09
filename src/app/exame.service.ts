@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +9,7 @@ import { Exame } from './model/exame';
   providedIn: 'root'
 })
 export class ExameService {
-  exameUrl = "http://localhost:8080/exames";
+  exameUrl = `${environment.apiUrl}/exames`;
 
   constructor(private http: HttpClient) { }
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { HttpClient } from 'selenium-webdriver/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Candidato } from '../model/candidato';
 
 @Component({
   selector: 'app-candidato-listagem',
@@ -33,6 +34,7 @@ export class CandidatoListagemComponent implements OnInit {
       
         next: resposta => {
           this.candidatos.push(resposta);
+          this.candidato = new Candidato();
           alert("Candidato cadastrado com sucesso!");
         },
         error: (e)=>console.log(e)

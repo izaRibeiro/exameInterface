@@ -55,6 +55,7 @@ export class InscricaoListagemComponent implements OnInit {
       this.inscricaoService.criar(this.inscricao).subscribe(
         () => {
           this.listar();
+          alert("Inscrição cadastrada com sucesso!");
           this.inscricao = new Inscricao();
         },
         error => {

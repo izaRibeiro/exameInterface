@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -5,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class InscricaoService {
-  inscricaoUrl = "http://localhost:8080/exameCandidato";
+  inscricaoUrl = `${environment.apiUrl}/exameCandidato`;
 
   constructor(private http: HttpClient) { }
 

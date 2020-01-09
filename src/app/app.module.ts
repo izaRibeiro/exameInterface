@@ -17,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
 import { ExameFormComponent } from './exame-form/exame-form.component';
 import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-listagem.component';
 import { InscricaoFormComponent } from './inscricao-form/inscricao-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { InscricaoFormComponent } from './inscricao-form/inscricao-form.componen
     HttpClientModule,
     FormsModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [ CandidatoService, ExameService],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Inscricao } from '../model/inscricao';
 import { FormGroup } from '@angular/forms';
 import { InscricaoService } from '../inscricao.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-inscricao-form',
@@ -20,8 +20,8 @@ export class InscricaoFormComponent implements OnInit {
 
   constructor(
     private inscricaoService: InscricaoService,
-    private route: ActivatedRoute
-
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -35,22 +35,25 @@ export class InscricaoFormComponent implements OnInit {
     }
   }
 
+  
+  listar(){
+    
+    this.inscricaoService.listar().subscribe(dados => this.inscricoes = dados);
+  }
+
   adicionarNota(inscricao){
     console.log('nota: ' + inscricao.nota);
     
-    if(inscricao.nota != null){
       this.inscricaoService.adicionarNota(this.inscricao, this.idexame, this.idcandidato)
       .subscribe({
         next: resp=>{
           console.log('sucesso');
           alert("Nota editada com sucesso!");
+          this.router.navigateByUrl("listagemIncricao");
         }, 
         error: (e)=>console.log(e)
       });
-      document.location.href = "http://localhost:4200/listagemIncricao";
-    }else{
-      alert("Não é possível efetuar o cadastro com um campo vazio");
-    }
+
     
   }
 }

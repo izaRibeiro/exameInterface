@@ -4,6 +4,7 @@ import { ExameService } from './../exame.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Exame } from '../model/exame';
 
 @Component({
   selector: 'app-exame-listagem',
@@ -37,6 +38,7 @@ export class ExameListagemComponent implements OnInit {
         next: resposta => {
           this.exames.push(resposta);
           alert("Exame cadastrado com sucesso!");
+          this.exame = new Exame();
         },
         error: (e)=>console.log(e)
       });

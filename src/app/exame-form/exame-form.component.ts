@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ExameService } from './../exame.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Exame } from '../model/exame';
 
 @Component({
@@ -31,7 +31,8 @@ export class ExameFormComponent implements OnInit {
     private route: ActivatedRoute,
     
     private service: ExameService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
 
     ) { }
 
@@ -72,10 +73,10 @@ export class ExameFormComponent implements OnInit {
           next: resp=>{
             console.log('sucesso');
             alert("Exame editado com sucesso!");
+            this.router.navigateByUrl("listagemExames");
           }, 
           error: (e)=>console.log(e)
         });
-        document.location.href = "http://localhost:4200/listagemExames";
     }else{
       alert("Não é possível efetuar a edição com campos vazios");
     }
