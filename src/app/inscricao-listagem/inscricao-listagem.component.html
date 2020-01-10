@@ -1,8 +1,10 @@
 <router-outlet></router-outlet>
 <app-header></app-header>
-<h2>Efetuar Nova Inscrição</h2>
 
-<section>
+<br>
+<button (click) = "onNovo()" class="btn btn-info">Nova Inscrição</button>
+<hr>
+<section *ngIf ="novo">
     <div class="container">
     <form >
 
@@ -56,11 +58,22 @@
                 Atualizar Nota
             </button>
 
-            <button type="submit" class="btn btn-danger" (click) = "remover(inscricao)">
+           <!-- <button type="submit" class="btn btn-danger" (click) = "remover(inscricao)">
+                Remover
+            </button>-->
+            <button type="submit" class="btn btn-danger" (click) = "onDelete(inscricao)">
                 Remover
             </button>
-
   
        
     </tr>
 </table>
+
+
+<ng-template #deleteModal>
+    <div class="modal-body text-center">
+      <p>Você realmente deseja excluir essa inscrição?</p>
+      <button type="button" class="btn btn-default" (click) = "confirmarDelete(exame)">Sim</button>
+      <button type="button" class="btn btn-primary" (click) = "negarDelete()">Não</button>
+    </div>
+  </ng-template>

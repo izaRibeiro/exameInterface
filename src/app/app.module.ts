@@ -1,3 +1,4 @@
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 
 import { RouterModule } from '@angular/router';
 
@@ -18,6 +19,7 @@ import { ExameFormComponent } from './exame-form/exame-form.component';
 import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-listagem.component';
 import { InscricaoFormComponent } from './inscricao-form/inscricao-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
     ExameFormComponent,
     InscricaoListagemComponent,
-    InscricaoFormComponent
+    InscricaoFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ModalModule.forRoot()
   ],
   providers: [ CandidatoService, ExameService],
   bootstrap: [AppComponent]

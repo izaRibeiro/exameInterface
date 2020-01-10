@@ -1,7 +1,8 @@
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './../app-routing.module';
 import { ExameService } from './../exame.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Exame } from '../model/exame';
@@ -16,15 +17,23 @@ export class ExameListagemComponent implements OnInit {
   exames: Array<any>;
   exame: any;
   exameSelecionado : ExameListagemComponent;
+  erro: string;
+  novo: boolean;
+  deleteModalRef: BsModalRef;
+  @ViewChild('deleteModal' , {static: true}) deleteModal;
 
   constructor(private exameService: ExameService,
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private modalService: BsModalService
+    ) { }
+
 
   ngOnInit() {
     this.exame = {};
     this.listar();
+    this.novo = false;
   }
 
   listar(){
@@ -40,7 +49,11 @@ export class ExameListagemComponent implements OnInit {
           alert("Exame cadastrado com sucesso!");
           this.exame = new Exame();
         },
-        error: (e)=>console.log(e)
+        error: (e)=> {
+          debugger
+          console.log(e.error)
+          this.erro = e.error.body;
+        }
       });
 
    }else{
@@ -53,10 +66,30 @@ export class ExameListagemComponent implements OnInit {
 
   }
 
+  onDelete(exame){
+    this.exame = exame;
+    this.deleteModalRef = this.modalService.show(this.deleteModal, {class: 'modal-sm'});
+  }
+
+  confirmarDelete(){
+    this.remover(this.exame);
+    this.deleteModalRef.hide();
+  }
+
+  negarDelete(){
+    this.deleteModalRef.hide();
+  }
 
   onEdit(id){
     this.router.navigate(['exames', id]);
   }
 
+  onNovo(){
+    if(this.novo){
+      this.novo = false;
+    }else{
+      this.novo = true;
+    }
+  }
 
 }

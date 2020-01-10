@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { InscricaoService } from '../inscricao.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { Exame } from '../model/exame';
 import { ExameService } from '../exame.service';
 import { CandidatoService } from '../candidato.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-inscricao-listagem',
@@ -24,6 +25,10 @@ export class InscricaoListagemComponent implements OnInit {
   inscricaoSelecionada : InscricaoListagemComponent;
   exames: Array<any>;
   candidatos: Array<any>;
+  novo: boolean;
+  deleteModalRef: BsModalRef;
+  @ViewChild('deleteModal', {static: true}) deleteModal;
+
 
   constructor(
     private inscricaoService: InscricaoService,
@@ -31,11 +36,12 @@ export class InscricaoListagemComponent implements OnInit {
     private candidatoService: CandidatoService,
     private http: HttpClient,
     private router: Router,
-    
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
     this.listar();
+    this.novo = false;
     
     this.exameService.listar().subscribe(dados => this.exames = dados);
     this.candidatoService.listar().subscribe(dados => this.candidatos = dados);
@@ -73,8 +79,30 @@ export class InscricaoListagemComponent implements OnInit {
     });
   }
 
+  onDelete(inscricao){
+    this.inscricao = inscricao;
+    this.deleteModalRef = this.modalService.show(this.deleteModal, {class: 'modal-sm'});
+  }
+
+  confirmarDelete(){
+    this.remover(this.inscricao);
+    this.deleteModalRef.hide();
+  }
+
+  negarDelete(){
+    this.deleteModalRef.hide();
+  }
+
   onEdit(exame, candidato){
     this.router.navigate(['exameCandidato', exame, candidato]);
+  }
+
+  onNovo(){
+    if(this.novo){
+      this.novo = false;
+    }else{
+      this.novo = true;
+    }
   }
 
 }

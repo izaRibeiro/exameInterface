@@ -1,8 +1,9 @@
 <router-outlet></router-outlet>
 <app-header></app-header>
-<h2>Cadastrar Novo Candidato</h2>
 
-<section>
+<br>
+<button (click) = "onNovo()" class="btn btn-info">Novo Candidato</button>
+<section *ngIf ="novo">
     <div class="container">
     <form method="POST" #formCandidato = "ngForm">
         <div class="form-group">
@@ -43,9 +44,21 @@
                 Atualizar
             </button>
 
-            <button type="submit" class="btn btn-danger" (click) = "remover(candidato)">
+           <!-- <button type="submit" class="btn btn-danger" (click) = "remover(candidato)">
+                Remover
+            </button>-->
+
+            <button type="submit" class="btn btn-danger" (click) = "onDelete(candidato)">
                 Remover
             </button>
         </td>
     </tr>
 </table>
+
+<ng-template #deleteModal>
+    <div class="modal-body text-center">
+      <p>Você realmente deseja excluir esse candidato?</p>
+      <button type="button" class="btn btn-default" (click) = "confirmarDelete(exame)">Sim</button>
+      <button type="button" class="btn btn-primary" (click) = "negarDelete()">Não</button>
+    </div>
+  </ng-template>

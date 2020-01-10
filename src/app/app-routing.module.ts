@@ -6,6 +6,7 @@ import { CandidatoListagemComponent } from './candidato-listagem/candidato-lista
 import { CandidatoFormComponent } from './candidato-form/candidato-form.component';
 import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-listagem.component';
 import { InscricaoFormComponent } from './inscricao-form/inscricao-form.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path : 'novoExame', component: ExameFormComponent },
   { path : 'exames/:id', component: ExameFormComponent },
   { path : 'candidatos/:id', component: CandidatoFormComponent },
-  { path : 'exameCandidato/:exame/:candidato', component: InscricaoFormComponent}
+  { path : 'exameCandidato/:exame/:candidato', component: InscricaoFormComponent},
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

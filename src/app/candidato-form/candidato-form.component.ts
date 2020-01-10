@@ -52,10 +52,14 @@ export class CandidatoFormComponent implements OnInit {
             this.candidatoService.listar();
             this.router.navigateByUrl('listagemCandidatos');
           }, 
-          error: (e)=>console.log(e)
+          error: (e) =>{
+            debugger
+            console.log(e.error);
+          }
         });
         
-      }else{
+     }else{
+        
         alert("Não é possível efetuar a edição com campos vazios");
       }
   }
