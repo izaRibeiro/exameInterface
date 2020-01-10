@@ -20,6 +20,8 @@ import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-lista
 import { InscricaoFormComponent } from './inscricao-form/inscricao-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { LoginComponent } from './login/login.component';
     ExameFormComponent,
     InscricaoListagemComponent,
     InscricaoFormComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +44,9 @@ import { LoginComponent } from './login/login.component';
     RouterModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
   ],
-  providers: [ CandidatoService, ExameService],
+  providers: [ CandidatoService, ExameService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

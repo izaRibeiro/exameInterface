@@ -15,27 +15,36 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
+    </head>
+    <header>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container d-flex justify-content-between">
+            
+            <a href="#" class="navbar-brand d-flex ">
+                
+                <strong>Gerenciador de Vestibular</strong><span class="glyphicon glyphicon-education"></span>
+        
+            </a>
+            <a routerLink="login">
+                <strong>Login </strong>
+            </a>
+            <br>
+            <hr>
+            <a [routerLink]="['listagemCandidatos']"><strong>Candidatos</strong></a>
+            <br>
+            <hr>
+            <a [routerLink]="['listagemExames']"><strong>Exames</strong></a>
+            <br>
+            <hr>
+            <a [routerLink]="['listagemIncricao']"><strong>Inscrição</strong></a>
+            <hr>
     
-
-</head>
+            </div>
+        </div>
+    </header>
 <body>
     <router-outlet></router-outlet>
-    <app-header></app-header>
 
 
-   
-    <a [routerLink]="['listagemCandidatos']"><strong>Candidatos</strong></a>
-    <br>
-    <hr>
-    <a [routerLink]="['listagemExames']"><strong>Exames</strong></a>
-    <br>
-    <hr>
-    <a [routerLink]="['listagemIncricao']"><strong>Inscrição</strong></a>
-    <hr>
-    <!--<app-candidato-listagem></app-candidato-listagem>
-    <hr>
-    <app-exame-listagem></app-exame-listagem>-->
-    <nav>
 
-    </nav>
 </body>

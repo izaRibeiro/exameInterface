@@ -43,17 +43,22 @@ export class InscricaoFormComponent implements OnInit {
 
   adicionarNota(inscricao){
     console.log('nota: ' + inscricao.nota);
-    
-      this.inscricaoService.adicionarNota(this.inscricao, this.idexame, this.idcandidato)
-      .subscribe({
-        next: resp=>{
-          console.log('sucesso');
-          alert("Nota editada com sucesso!");
-          this.router.navigateByUrl("listagemIncricao");
-        }, 
-        error: (e)=>console.log(e)
-      });
+    if(inscricao.nota != null){
+        if(inscricao.nota > 0 && inscricao.nota < 100){
+          this.inscricaoService.adicionarNota(this.inscricao, this.idexame, this.idcandidato)
+          .subscribe({
+            next: resp=>{
+              console.log('sucesso');
+              alert("Nota editada com sucesso!");
+              this.router.navigateByUrl("listagemIncricao");
+            }, 
+            error: (e)=>console.log(e)
 
-    
+        });
+
+      }else{
+        alert("A nota deve obrigatóriamente estar entre 0 e 100!");
+      }
+    }
   }
 }

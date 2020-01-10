@@ -1,5 +1,4 @@
 <router-outlet></router-outlet>
-<app-header></app-header>
 
 <br>
 <button (click) = "onNovo()" class="btn btn-info">Novo Candidato</button>
@@ -43,10 +42,6 @@
             <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id)">
                 Atualizar
             </button>
-
-           <!-- <button type="submit" class="btn btn-danger" (click) = "remover(candidato)">
-                Remover
-            </button>-->
 
             <button type="submit" class="btn btn-danger" (click) = "onDelete(candidato)">
                 Remover

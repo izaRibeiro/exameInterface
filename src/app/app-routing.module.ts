@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { ExameFormComponent } from './exame-form/exame-form.component';
 import { ExameListagemComponent } from './exame-listagem/exame-listagem.component';
 import { NgModule } from '@angular/core';
@@ -7,9 +8,11 @@ import { CandidatoFormComponent } from './candidato-form/candidato-form.componen
 import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-listagem.component';
 import { InscricaoFormComponent } from './inscricao-form/inscricao-form.component';
 import { LoginComponent } from './login/login.component';
+import { AppModule } from './app.module';
 
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'listagemCandidatos', component: CandidatoListagemComponent },
   { path: 'listagemExames', component: ExameListagemComponent },
   { path: 'listagemIncricao', component: InscricaoListagemComponent },
