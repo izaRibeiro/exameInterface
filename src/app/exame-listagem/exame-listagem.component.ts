@@ -50,7 +50,6 @@ export class ExameListagemComponent implements OnInit {
           this.exame = new Exame();
         },
         error: (e)=> {
-          debugger
           console.log(e.error)
           this.erro = e.error.body;
         }

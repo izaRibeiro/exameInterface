@@ -1,18 +1,23 @@
 
 <router-outlet></router-outlet>
 
-
-<a [routerLink]="['listagemCandidatos']"><strong>Candidatos</strong></a>
+<br>
+<div>
+    <h5>Sistema de gerenciamento de provas de vestibular</h5>
+</div>
+<a [routerLink]="['listagemCandidatos']" *ngIf="mostrarMenu"><strong>Candidatos</strong></a>
 <br>
 <hr>
-<a [routerLink]="['listagemExames']"><strong>Exames</strong></a>
+<a [routerLink]="['listagemExames']" *ngIf="mostrarMenu"><strong>Exames</strong></a>
 <br>
 <hr>
-<a [routerLink]="['listagemIncricao']"><strong>Inscrição</strong></a>
+<a [routerLink]="['listagemIncricao']" *ngIf="mostrarMenu"><strong>Inscrição</strong></a>
 <hr>
 <!--<app-candidato-listagem></app-candidato-listagem>
 <hr>
 <app-exame-listagem></app-exame-listagem>-->
+
+
 <nav>
    
 </nav>

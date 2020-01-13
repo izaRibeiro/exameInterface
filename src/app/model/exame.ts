@@ -1,6 +1,6 @@
 export class Exame {
 
-    idexame: number;
+    id: number;
     nome: string;
     vagas: number;
     candidatos: any[];

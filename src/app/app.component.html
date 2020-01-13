@@ -20,28 +20,34 @@
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container d-flex justify-content-between">
             
-            <a href="#" class="navbar-brand d-flex ">
+            <a href="#" class="navbar-brand d-flex " >
                 
                 <strong>Gerenciador de Vestibular</strong><span class="glyphicon glyphicon-education"></span>
         
             </a>
-            <a routerLink="login">
+            
+            <a routerLink="login" *ngIf="!mostrarMenu">
                 <strong>Login </strong>
+            </a>
+            <a href="#"  *ngIf="mostrarMenu">
+                <strong>Logout </strong>
             </a>
             <br>
             <hr>
-            <a [routerLink]="['listagemCandidatos']"><strong>Candidatos</strong></a>
+            <a [routerLink]="['listagemCandidatos']"  *ngIf="mostrarMenu"><strong>Candidatos</strong></a>
             <br>
             <hr>
-            <a [routerLink]="['listagemExames']"><strong>Exames</strong></a>
+            <a [routerLink]="['listagemExames']"  *ngIf="mostrarMenu"><strong>Exames</strong></a>
             <br>
             <hr>
-            <a [routerLink]="['listagemIncricao']"><strong>Inscrição</strong></a>
+            <a [routerLink]="['listagemIncricao']" *ngIf="mostrarMenu"><strong>Inscrição</strong></a>
             <hr>
     
             </div>
         </div>
     </header>
+
+
 <body>
     <router-outlet></router-outlet>
 

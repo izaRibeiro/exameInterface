@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { HomeComponent } from './home/home.component';
+import { AuthGuardService } from './guards/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { HomeComponent } from './home/home.component';
     BrowserAnimationsModule,
     ModalModule.forRoot(),
   ],
-  providers: [ CandidatoService, ExameService, AuthService],
+  providers: [ CandidatoService, ExameService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
