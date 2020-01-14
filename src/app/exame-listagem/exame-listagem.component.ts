@@ -13,7 +13,6 @@ import { Exame } from '../model/exame';
   styleUrls: ['./exame-listagem.component.css']
 })
 export class ExameListagemComponent implements OnInit {
-  exameUrl = "http://localhost:8080/exames";
   exames: Array<any>;
   exame: any;
   exameSelecionado : ExameListagemComponent;

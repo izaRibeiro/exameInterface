@@ -31,22 +31,31 @@ export class AuthService {
     this.mostrarMenuExame.emit(false);
 
     if(usuarioSelecionado == "candidato"){
-      this.candidato.nome = usuario.nome;
+      /*this.candidato.nome = usuario.nome;
+      this.candidato.id = usuario.id;*/
+
       this.candidato.id = usuario.id;
+      this.candidato.email = usuario.email;
+      this.candidato.senha = usuario.senha;
       this.logarCandidato(this.candidato);
     }else{
-      this.exame.nome = usuario.nome;
-      this.exame.id = usuario.id;
+      /*this.exame.nome = usuario.nome;
+      this.exame.id = usuario.id;*/
       this.logarExame(this.exame);
     }
   }
 
   logarCandidato(candidato: Candidato){
+    console.log(candidato.id);
+    console.log(candidato.email);
+    console.log(candidato.senha);
     this.candidatoService.carregarPeloId(candidato.id).subscribe(
 
       (res: Candidato) =>  {
-
-          if(res.id == candidato.id && res.nome == candidato.nome){
+        console.log(res.id);
+        console.log(res.email);
+        console.log(res.senha);
+          if(res.id == candidato.id && res.email == candidato.email && res.senha == candidato.senha){
             this.mostrarMenu.emit(true);
             this.mostrarMenuCandidato.emit(true);
             alert("Login efetuado com sucesso!!");
@@ -68,7 +77,7 @@ export class AuthService {
     this.exameService.carregarPeloId(exame.id).subscribe(
 
       (res: Exame) =>  {
-          if(res.id == exame.id && res.nome == exame.nome){
+          if(res.id == exame.id && res.email == exame.email && res.senha == exame.senha){
             this.mostrarMenu.emit(true);
             this.mostrarMenuExame.emit(true);
             alert("Login efetuado com sucesso!!");

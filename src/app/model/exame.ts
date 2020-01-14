@@ -4,4 +4,6 @@ export class Exame {
     nome: string;
     vagas: number;
     candidatos: any[];
+    email: string;
+    senha: string;
 }

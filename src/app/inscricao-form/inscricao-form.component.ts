@@ -44,7 +44,7 @@ export class InscricaoFormComponent implements OnInit {
   adicionarNota(inscricao){
     console.log('nota: ' + inscricao.nota);
     if(inscricao.nota != null){
-        if(inscricao.nota > 0 && inscricao.nota < 100){
+        if(inscricao.nota >= 0 && inscricao.nota <= 100){
           this.inscricaoService.adicionarNota(this.inscricao, this.idexame, this.idcandidato)
           .subscribe({
             next: resp=>{

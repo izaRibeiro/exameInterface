@@ -19,7 +19,6 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class InscricaoListagemComponent implements OnInit {
 
-  inscricaoUrl = "http://localhost:8080/exameCandidato";
   inscricoes: Array<any>;
   inscricao: Inscricao = new Inscricao();
   inscricaoSelecionada : InscricaoListagemComponent;
