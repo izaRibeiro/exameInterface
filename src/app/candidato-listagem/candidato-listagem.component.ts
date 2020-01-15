@@ -1,11 +1,8 @@
-import { CandidatoService } from './../candidato.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { HttpClient } from 'selenium-webdriver/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Candidato } from '../model/candidato';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { CandidatoService } from './../candidato.service';
 
 @Component({
   selector: 'app-candidato-listagem',

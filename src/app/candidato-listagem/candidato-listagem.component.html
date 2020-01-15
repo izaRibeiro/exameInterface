@@ -1,5 +1,6 @@
 <router-outlet></router-outlet>
 
+
 <br>
 <button (click) = "onNovo()" class="btn btn-info">Novo Candidato</button>
 <section *ngIf ="novo">
@@ -40,39 +41,39 @@
     </div>
 </section>
 
-<hr>
-<h2>Listagem dos Candidatos</h2>
+        <hr>
+        <h2>Listagem dos Candidatos</h2>
 
-<table class="table">
-    <tr>
-        <td>Id</td>
-        <td>Nome</td>
-        <td>Cidade</td>
-        <td>E-mail</td>
-    </tr>
-    <tr  *ngFor="let candidato of candidatos">
-        <td>{{candidato.id}}</td>
-        <td>{{candidato.nome}}</td>
-        <td>{{candidato.cidade}}</td>
-        <td>{{candidato.email}}</td>
+        <table class="table">
+            <tr>
+                <td>Id</td>
+                <td>Nome</td>
+                <td>Cidade</td>
+                <td>E-mail</td>
+            </tr>
+            <tr  *ngFor="let candidato of candidatos">
+                <td>{{candidato.id}}</td>
+                <td>{{candidato.nome}}</td>
+                <td>{{candidato.cidade}}</td>
+                <td>{{candidato.email}}</td>
 
-        <td>
+                <td>
 
-            <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id)">
-                Atualizar
-            </button>
+                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id)">
+                        Atualizar
+                    </button>
 
-            <button type="submit" class="btn btn-danger" (click) = "onDelete(candidato)">
-                Remover
-            </button>
-        </td>
-    </tr>
-</table>
+                    <button type="submit" class="btn btn-danger" (click) = "onDelete(candidato)">
+                        Remover
+                    </button>
+                </td>
+            </tr>
+        </table>
 
-<ng-template #deleteModal>
-    <div class="modal-body text-center">
-      <p>Você realmente deseja excluir esse candidato?</p>
-      <button type="button" class="btn btn-default" (click) = "confirmarDelete(exame)">Sim</button>
-      <button type="button" class="btn btn-primary" (click) = "negarDelete()">Não</button>
-    </div>
-  </ng-template>
+        <ng-template #deleteModal>
+            <div class="modal-body text-center">
+            <p>Você realmente deseja excluir esse candidato?</p>
+            <button type="button" class="btn btn-default" (click) = "confirmarDelete(exame)">Sim</button>
+            <button type="button" class="btn btn-primary" (click) = "negarDelete()">Não</button>
+            </div>
+        </ng-template>

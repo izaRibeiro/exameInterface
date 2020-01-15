@@ -1,7 +1,7 @@
-import { Usuario } from './../model/usuario';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Candidato } from '../model/candidato';
+import { Usuario } from './../model/usuario';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,6 @@ export class LoginComponent implements OnInit {
   
   private candidato: Candidato = new Candidato();
   private usuario: Usuario = new Usuario();
-  //private object: Object = new Object();
   private selecaoUsuario: String;
 
   constructor(

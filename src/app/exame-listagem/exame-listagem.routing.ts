@@ -1,7 +1,7 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { ExameFormComponent } from './../exame-form/exame-form.component';
 import { ExameListagemComponent } from './exame-listagem.component';
-import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders, NgModule } from '@angular/core';
 
 export const routesExame: Routes = [
   { path : ' ', component: ExameListagemComponent },

@@ -14,7 +14,6 @@
             name="exame"
             placeholder="Exame" class="form-control"
             [(ngModel)]="inscricao.exame" required> 
-
                 <option *ngFor="let exame of exames" [ngValue]="exame.id"> {{exame.nome}}</option>
             </select>
         </div>

@@ -29,9 +29,9 @@
             <a routerLink="login" *ngIf="!mostrarMenu">
                 <strong>Login </strong>
             </a>
-            <a href="#"  *ngIf="mostrarMenu">
+            <button (click)="logout()"  *ngIf="mostrarMenu">
                 <strong>Logout </strong>
-            </a>
+            </button>
             <br>
             <hr>
             <a [routerLink]="['listagemCandidatos']"  *ngIf="mostrarMenu"><strong>Candidatos</strong></a>

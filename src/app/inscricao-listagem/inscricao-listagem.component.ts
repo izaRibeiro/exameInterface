@@ -1,16 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { InscricaoService } from '../inscricao.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup } from '@angular/forms';
-import { Inscricao } from '../model/inscricao';
-import { ThrowStmt } from '@angular/compiler';
-import { Candidato } from '../model/candidato';
-import { Observable } from 'rxjs';
-import { Exame } from '../model/exame';
-import { ExameService } from '../exame.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CandidatoService } from '../candidato.service';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ExameService } from '../exame.service';
+import { InscricaoService } from '../inscricao.service';
+import { Inscricao } from '../model/inscricao';
 
 @Component({
   selector: 'app-inscricao-listagem',

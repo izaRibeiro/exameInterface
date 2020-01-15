@@ -23,7 +23,7 @@ export class InscricaoService {
   }
 
   carregarPeloId(id){
-    //return this.http.get(`${this.inscricaoUrl }/${id}`);
+    return this.http.get(`${this.inscricaoUrl }/${id}`);
   }
 
   update(id, inscricao){

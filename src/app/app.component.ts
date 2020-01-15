@@ -29,5 +29,14 @@ export class AppComponent {
                   this.mostrarMenuCandidato = mostrar;
                   this.mostrarMenuExame = mostrar;}
     );
+
+    if(sessionStorage.getItem("usuarioAutenticado") == "true"){
+      this.authService.exibirMenu;
+      this.mostrarMenu = true;
+    }
+  }
+
+  logout(){
+    this.authService.logout();
   }
 }

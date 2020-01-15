@@ -1,11 +1,8 @@
-import { CandidatoListagemComponent } from './../candidato-listagem/candidato-listagem.component';
 import { Component, OnInit } from '@angular/core';
-import { Candidato } from '../model/candidato';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CandidatoService } from '../candidato.service';
-import { InscricaoFormComponent } from '../inscricao-form/inscricao-form.component';
-import { Inscricao } from '../model/inscricao';
+import { Candidato } from '../model/candidato';
 
 @Component({
   selector: 'app-candidato-form',
