@@ -26,6 +26,10 @@ export class ExameService {
     return this.http.get(`${this.exameUrl}/${id}`);
   }
 
+  carregarPeloEmail(email){
+    return this.http.get(`${this.exameUrl}/email/${email}`);
+  }
+
   update(id, exame){
     const url = `${this.exameUrl}/${id}`;
 

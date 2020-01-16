@@ -1,11 +1,9 @@
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { HttpClient } from '@angular/common/http';
-import { AppRoutingModule } from './../app-routing.module';
-import { ExameService } from './../exame.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Exame } from '../model/exame';
+import { ExameService } from './../exame.service';
 
 @Component({
   selector: 'app-exame-listagem',
@@ -18,6 +16,7 @@ export class ExameListagemComponent implements OnInit {
   exameSelecionado : ExameListagemComponent;
   erro: string;
   novo: boolean;
+  modalRef: BsModalRef;
   deleteModalRef: BsModalRef;
   @ViewChild('deleteModal' , {static: true}) deleteModal;
 
@@ -39,24 +38,32 @@ export class ExameListagemComponent implements OnInit {
     this.exameService.listar().subscribe(dados => this.exames = dados);
   }
 
-  criar(){
-    if(this.exame.nome != null && this.exame.vagas != null){
-      this.exameService.criar(this.exame).subscribe({
-        
-        next: resposta => {
-          this.exames.push(resposta);
-          alert("Exame cadastrado com sucesso!");
-          this.exame = new Exame();
-        },
-        error: (e)=> {
-          console.log(e.error)
-          this.erro = e.error.body;
-        }
-      });
+  onCreate(template: TemplateRef<any>){
+    this.modalRef = this.modalService.show(template);
+  }
 
-   }else{
-    alert("Não é possível efetuar o cadastro com campos vazios");
-   }
+  criar(){
+    if(this.validarEmail(this.exame.email)){
+      if(this.exame.nome != null && this.exame.vagas != null){
+        this.exameService.criar(this.exame).subscribe({
+          
+          next: resposta => {
+            this.exames.push(resposta);
+            alert("Exame cadastrado com sucesso!");
+            this.exame = new Exame();
+          },
+          error: (e)=> {
+            console.log(e.error)
+            this.erro = e.error.body;
+          }
+        });
+
+    }else{
+      alert("Não é possível efetuar o cadastro com campos vazios");
+    }
+  }else{
+    alert("O e-mail digitado já existe. Por favor, insira outro!");
+  }
   }
 
   remover(exame){
@@ -90,4 +97,10 @@ export class ExameListagemComponent implements OnInit {
     }
   }
 
+  validarEmail(email: string){
+    if(this.exameService.carregarPeloEmail(email) != null){
+      return true;
+    }
+    return false;
+  }
 }

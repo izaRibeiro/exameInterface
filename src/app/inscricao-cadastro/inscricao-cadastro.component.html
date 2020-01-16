@@ -1,0 +1,32 @@
+
+<div class="container">
+    <form >
+
+        <div class="form-group">
+            <label for="exame">Identificador do Exame: </label>
+            <select type="text" 
+            id="exame" 
+            name="exame"
+            placeholder="Exame" class="form-control"
+            [(ngModel)]="inscricao.exame" required> 
+                <option *ngFor="let exame of exames" [ngValue]="exame.id"> {{exame.nome}}</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="candidato">Identificador do Candidato: </label>
+            <select type="text" 
+            id="candidato" 
+            name="candidato"
+            placeholder="Candidato" class="form-control"
+            [(ngModel)]="inscricao.candidato" required> 
+                <option *ngFor="let candidato of candidatos" [ngValue]="candidato.id"> {{candidato.nome}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success"
+        (click)="criar()">Cadastrar</button>
+
+
+    </form>
+    </div>

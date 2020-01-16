@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CandidatoService } from '../candidato.service';
@@ -20,6 +20,7 @@ export class InscricaoListagemComponent implements OnInit {
   exames: Array<any>;
   candidatos: Array<any>;
   novo: boolean;
+  modalRef: BsModalRef;
   deleteModalRef: BsModalRef;
   @ViewChild('deleteModal', {static: true}) deleteModal;
 
@@ -48,6 +49,9 @@ export class InscricaoListagemComponent implements OnInit {
     this.inscricaoService.listar().subscribe(dados => this.inscricoes = dados);
   }
 
+  onCreate(template: TemplateRef<any>){
+    this.modalRef = this.modalService.show(template);
+  }
 
   criar(){
 

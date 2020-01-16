@@ -10,6 +10,8 @@ import { InscricaoFormComponent } from './inscricao-form/inscricao-form.componen
 import { LoginComponent } from './login/login.component';
 import { AppModule } from './app.module';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { CandidatoCadastroComponent } from './candidato-cadastro/candidato-cadastro.component';
+import { ExameCadastroComponent } from './exame-cadastro/exame-cadastro.component';
 
 
 const routes: Routes = [
@@ -29,7 +31,9 @@ const routes: Routes = [
   canActivate: [AuthGuardService] },
   { path : 'exameCandidato/:exame/:candidato', component: InscricaoFormComponent,
   canActivate: [AuthGuardService]},
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'cadastroCandidato', component: CandidatoCadastroComponent},
+  { path: 'cadastroExame', component: ExameCadastroComponent}
 ];
 
 @NgModule({

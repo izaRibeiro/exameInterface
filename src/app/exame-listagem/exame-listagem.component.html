@@ -1,43 +1,21 @@
 <router-outlet></router-outlet>
 <br>
-<button (click) = "onNovo()" class="btn btn-info">Novo Exame</button>
-<section *ngIf ="novo">
-    <div class="container">
-    <form #formExame = "ngForm">
-
-        <div class="form-group">
-            <label for="nome">Nome do Exame:</label>
-            <input type="text" id="nome" name="nome"
-            placeholder="Nome" class="form-control"
-            [(ngModel)]="exame.nome" required> 
-        </div>
-
-        <div class="form-group">
-            <label for="vagas">Número de Vagas:</label>
-            <input type="text" id="vagas" name="vagas"
-            placeholder="Vagas" class="form-control"
-            [(ngModel)]="exame.vagas" required> 
-        </div>
-
-        
-        <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="text" id="email" name="email"
-            placeholder="E-mail" class="form-control"
-            [(ngModel)] = "exame.email" required> 
-        </div>
-
-        <div class="form-group">
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha"
-            placeholder="Senha" class="form-control"
-            [(ngModel)] = "exame.senha" required> 
-        </div>
-
-        <button type="submit" class="btn btn-success"
-        (click) = "criar()">Cadastrar</button>
-    </form>
-    </div>
+<button (click) = "onCreate(template)" class="btn btn-info">Novo Exame</button>
+<section>
+    
+    <ng-template #template>
+        <div class="modal-header">
+            
+            <h4 class="modal-title pull-left">Cadastrar um novo exame</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <app-exame-cadastro></app-exame-cadastro>
+          </div>
+    </ng-template>
+    
 </section>
 
 <hr>

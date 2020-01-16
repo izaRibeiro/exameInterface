@@ -1,10 +1,7 @@
-<router-outlet></router-outlet>
-<h2>Editar Exame</h2>
 
-<section>
     <div class="container">
-    <form>
-        
+    <form #formExame = "ngForm">
+
         <div class="form-group">
             <label for="nome">Nome do Exame:</label>
             <input type="text" id="nome" name="nome"
@@ -19,16 +16,22 @@
             [(ngModel)]="exame.vagas" required> 
         </div>
 
+        
         <div class="form-group">
             <label for="email">E-mail:</label>
             <input type="text" id="email" name="email"
             placeholder="E-mail" class="form-control"
-            [(ngModel)]="exame.email" required> 
+            [(ngModel)] = "exame.email" required> 
         </div>
-        <button type="submit" class="btn btn-success"
-        (click)=editar(exame)
-        >Editar</button>
 
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha"
+            placeholder="Senha" class="form-control"
+            [(ngModel)] = "exame.senha" required> 
+        </div>
+
+        <button type="submit" class="btn btn-success"
+        (click) = "criar()">Cadastrar</button>
     </form>
     </div>
-</section>

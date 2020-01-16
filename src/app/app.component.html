@@ -34,6 +34,12 @@
             </button>
             <br>
             <hr>
+            <a [routerLink]="['cadastroCandidato']"  *ngIf="!mostrarMenu"><strong>Cadastrar Candidato</strong></a>
+            <br>
+            <hr>
+            <a [routerLink]="['cadastroExame']"  *ngIf="!mostrarMenu"><strong>Cadastrar Exame</strong></a>
+            <br>
+            <hr>
             <a [routerLink]="['listagemCandidatos']"  *ngIf="mostrarMenu"><strong>Candidatos</strong></a>
             <br>
             <hr>

@@ -1,3 +1,4 @@
+import { timer, Subscription } from 'rxjs';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CandidatoService } from './candidato.service';
@@ -21,6 +22,7 @@ export class AuthService {
   candidato = new Candidato();
   emailUsuario: string;
   senhaUsuario: string;
+  private timerSubscription: Subscription;
 
   constructor(
     private router: Router,
@@ -29,10 +31,14 @@ export class AuthService {
   ) { }
 
   fazerLogin(usuario: Usuario, usuarioSelecionado){
+
+
     this.mostrarMenu.emit(false);
     this.mostrarMenuCandidato.emit(false);
     this.mostrarMenuExame.emit(false);
     sessionStorage.setItem("usuarioAutenticado", "false");
+    sessionStorage.setItem("usuarioCandidato", "false");
+    sessionStorage.setItem("usuarioExame", "false");
 
     if(usuarioSelecionado == "candidato"){
 
@@ -46,28 +52,25 @@ export class AuthService {
 
 
   defineCandidato(usuario: Usuario){
-    this.candidato.id = usuario.id;
     this.candidato.email = usuario.email;
     this.candidato.senha = usuario.senha;
   }
 
   
   defineExame(usuario: Usuario){
-    this.exame.id = usuario.id;
     this.exame.email = usuario.email;
     this.exame.senha = usuario.senha;
   }
 
   logarCandidato(candidato: Candidato){
-    this.candidatoService.carregarPeloId(candidato.id).subscribe(
-
+      this.candidatoService.carregarPeloEmail(candidato.email).subscribe(
       (res: Candidato) =>  {
-          if(res.id == candidato.id && res.email == candidato.email && res.senha == candidato.senha){
+          if(res.email == candidato.email && res.senha == candidato.senha){
             this.exibirMenu();
+            this.mostrarMenuCandidato.emit(true);
 
             sessionStorage.setItem("usuarioAutenticado", "true");
-
-            console.log(sessionStorage.getItem("usuarioAutenticado"));
+            sessionStorage.setItem("usuarioCandidato", "true");
 
             alert("Login efetuado com sucesso!!");
 
@@ -86,10 +89,9 @@ export class AuthService {
   }
 
   logarExame(exame: Exame){
-    this.exameService.carregarPeloId(exame.id).subscribe(
-
+      this.exameService.carregarPeloEmail(exame.email).subscribe(
       (res: Exame) =>  {
-          if(res.id == exame.id && res.email == exame.email && res.senha == exame.senha){
+          if(res.email == exame.email && res.senha == exame.senha){
             this.exibirMenu();
 
             sessionStorage.setItem("usuarioAutenticado", "true");
@@ -135,4 +137,6 @@ export class AuthService {
     this.usuarioAutenticado = sessionStorage.getItem("usuarioAutenticado") ;
     return this.usuarioAutenticado;
   }
+
+
 }

@@ -20,6 +20,10 @@ import { HomeComponent } from './home/home.component';
 import { InscricaoFormComponent } from './inscricao-form/inscricao-form.component';
 import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-listagem.component';
 import { LoginComponent } from './login/login.component';
+import { timer } from 'rxjs';
+import { CandidatoCadastroComponent } from './candidato-cadastro/candidato-cadastro.component';
+import { ExameCadastroComponent } from './exame-cadastro/exame-cadastro.component';
+import { InscricaoCadastroComponent } from './inscricao-cadastro/inscricao-cadastro.component';
 
 
 
@@ -35,7 +39,10 @@ import { LoginComponent } from './login/login.component';
     InscricaoListagemComponent,
     InscricaoFormComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    CandidatoCadastroComponent,
+    ExameCadastroComponent,
+    InscricaoCadastroComponent
   ],
   imports: [
     BrowserModule,

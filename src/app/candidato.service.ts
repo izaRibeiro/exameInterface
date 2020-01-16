@@ -27,8 +27,12 @@ export class CandidatoService {
     return this.http.get(`${this.candidatoUrl}/${id}`);
   }
 
-  carregarPeloNome(nome){
-    return this.http.get(`${this.candidatoUrl}/nome/${nome}`);
+  carregarPeloEmail(email){
+    return this.http.get(`${this.candidatoUrl}/email/${email}`);
+  }
+
+  carregarPelaSenha(senha){
+    return this.http.get(`${this.candidatoUrl}/senha/${senha}`);
   }
 
   update(id, candidato){

@@ -2,44 +2,11 @@
 
 
 <br>
-<button (click) = "onNovo()" class="btn btn-info">Novo Candidato</button>
-<section *ngIf ="novo">
-    <div class="container">
-    <form method="POST" #formCandidato = "ngForm">
+<button (click) = "onCreate(template)" class="btn btn-info">Novo Candidato</button>
 
-        <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome"
-            placeholder="Nome" class="form-control"
-            [(ngModel)] = "candidato.nome" required> 
-        </div>
 
-        <div class="form-group">
-            <label for="vagas">Cidade: </label>
-            <input type="text" id="cidade" name="cidade"
-            placeholder="Cidade" class="form-control"
-            [(ngModel)] = "candidato.cidade" required> 
-        </div>
 
-        <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="text" id="email" name="email"
-            placeholder="E-mail" class="form-control"
-            [(ngModel)] = "candidato.email" required> 
-        </div>
 
-        <div class="form-group">
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha"
-            placeholder="Senha" class="form-control"
-            [(ngModel)] = "candidato.senha" required> 
-        </div>
-
-        <button type="submit" class="btn btn-success"
-        (click) = "criar()">Cadastrar</button>
-    </form>
-    </div>
-</section>
 
         <hr>
         <h2>Listagem dos Candidatos</h2>
@@ -59,12 +26,13 @@
 
                 <td>
 
-                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id)">
+                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id, template)">
                         Atualizar
                     </button>
 
-                    <button type="submit" class="btn btn-danger" (click) = "onDelete(candidato)">
-                        Remover
+                    <button type="submit" class="btn btn-danger"
+                     (click) = "onDelete(candidato)">
+                        Remover 
                     </button>
                 </td>
             </tr>
@@ -77,3 +45,21 @@
             <button type="button" class="btn btn-primary" (click) = "negarDelete()">Não</button>
             </div>
         </ng-template>
+
+
+        <section>
+
+            <ng-template #template>
+                <div class="modal-header">
+                    
+                    <h4 class="modal-title pull-left">Cadastrar um novo candidato</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <app-candidato-cadastro></app-candidato-cadastro>
+                  </div>
+            </ng-template>
+            
+        </section>
