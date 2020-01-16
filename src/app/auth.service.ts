@@ -95,6 +95,7 @@ export class AuthService {
             this.exibirMenu();
 
             sessionStorage.setItem("usuarioAutenticado", "true");
+            sessionStorage.setItem("usuarioExame", "true");
 
             console.log(sessionStorage.getItem("usuarioAutenticado"));
 
@@ -137,6 +138,7 @@ export class AuthService {
     this.usuarioAutenticado = sessionStorage.getItem("usuarioAutenticado") ;
     return this.usuarioAutenticado;
   }
+
 
 
 }

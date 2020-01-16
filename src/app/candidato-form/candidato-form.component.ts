@@ -61,6 +61,8 @@ export class CandidatoFormComponent implements OnInit {
       }
   }
 
-
+  voltar(){
+    this.router.navigateByUrl('listagemCandidatos');
+  }
 
 }

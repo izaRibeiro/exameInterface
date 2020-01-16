@@ -10,3 +10,7 @@ a:hover {
 a:active {
 	text-decoration: none
 	}
+
+.titulo{
+	text-align: center;
+}

@@ -1,32 +1,63 @@
+
 <router-outlet></router-outlet>
-<h2>Cadastrar Novo Candidato</h2>
 
-<section>
+
+<br>
     <div class="container">
-    <form>
+        <form method="POST" #formCandidato = "ngForm">
 
-        <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome"
-            placeholder="Nome" class="form-control"
-            [(ngModel)] = "candidato.nome" required> 
-        </div>
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome"
+                placeholder="Nome" class="form-control"
+                [(ngModel)] = "candidato.nome" required #nome="ngModel"> 
+            </div>
 
-        <div class="form-group">
-            <label for="vagas">Cidade: </label>
-            <input type="text" id="cidade" name="cidade"
-            placeholder="Cidade" class="form-control"
-            [(ngModel)] = "candidato.cidade" required> 
-        </div>
+            <div *ngIf="!nome.valid && nome.touched" class="alert alert-danger" role="alert">
+                O nome é obrigatório
+            </div>
 
-        <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="text" id="email" name="email"
-            placeholder="E-mail" class="form-control"
-            [(ngModel)]="candidato.email" required> 
-        </div>
-        <button type="submit" class="btn btn-success"
-        (click) = "editar()" >Editar</button>
-    </form>
+            <div class="form-group">
+                <label for="vagas">Cidade: </label>
+                <input type="text" id="cidade" name="cidade"
+                placeholder="Cidade" class="form-control"
+                [(ngModel)] = "candidato.cidade" required #cidade="ngModel"> 
+            </div>
+
+            <div *ngIf="!cidade.valid && cidade.touched" class="alert alert-danger" role="alert">
+                A cidade é obrigatória
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="text" id="email" name="email"
+                placeholder="E-mail" class="form-control"
+                [(ngModel)] = "candidato.email" required email #email="ngModel" > 
+            </div>
+
+            <div *ngIf="!email.valid && email.touched" class="alert alert-danger" role="alert">
+                O e-mail é inválido
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha"
+                placeholder="Senha" class="form-control"
+                [(ngModel)] = "candidato.senha" required #senha="ngModel"> 
+            </div>
+            
+            <div *ngIf="!senha.valid && senha.touched" class="alert alert-danger" role="alert">
+                A senha é obrigatória
+            </div>
+
+            
+            <button type="submit" class="btn btn-success"
+            (click) = "editar()"  [disabled]="formCandidato.invalid" >Editar</button>
+
+            <button type="submit" class="btn btn-danger"
+            (click) = "voltar()" >Voltar</button>
+
+
+        </form>
     </div>
-</section>
+

@@ -61,4 +61,10 @@ export class InscricaoFormComponent implements OnInit {
       }
     }
   }
+
+  voltar(){
+    this.router.navigateByUrl('listagemIncricao');
+  }
+
+  
 }

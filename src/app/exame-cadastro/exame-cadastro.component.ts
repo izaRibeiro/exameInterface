@@ -1,8 +1,8 @@
-import { Router } from '@angular/router';
-import { ExameService } from './../exame/exame.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Exame } from '../model/exame';
-import { ExameListagemComponent } from '../exame-listagem/exame-listagem.component';
+import { ExameService } from './../exame/exame.service';
+
 
 @Component({
   selector: 'app-exame-cadastro',
@@ -16,8 +16,7 @@ export class ExameCadastroComponent implements OnInit {
   novo: boolean;
 
   constructor(private exameService: ExameService,
-    private router: Router,
-    private exameListagem: ExameListagemComponent
+    private router: Router
     ) { }
 
 
@@ -38,7 +37,7 @@ export class ExameCadastroComponent implements OnInit {
           next: resposta => {
             this.exame = new Exame();
             alert("Exame cadastrado com sucesso!");
-            this.exameListagem.listar();
+            this.listar();
           },
           error: (e)=>console.log(e)
         });

@@ -26,12 +26,12 @@
 
                 <td>
 
-                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id, template)">
+                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id, templateEditar)">
                         Atualizar
                     </button>
 
                     <button type="submit" class="btn btn-danger"
-                     (click) = "onDelete(candidato)">
+                     (click) = "onDelete(candidato)" *ngIf="!candidatoAutenticado || exameAutenticado">
                         Remover 
                     </button>
                 </td>
@@ -47,19 +47,36 @@
         </ng-template>
 
 
-        <section>
+<section>
 
-            <ng-template #template>
-                <div class="modal-header">
-                    
-                    <h4 class="modal-title pull-left">Cadastrar um novo candidato</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <app-candidato-cadastro></app-candidato-cadastro>
-                  </div>
-            </ng-template>
+    <ng-template #template>
+        <div class="modal-header">
             
-        </section>
+            <h4 class="modal-title pull-left">Cadastrar um novo candidato</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <app-candidato-cadastro></app-candidato-cadastro>
+            </div>
+    </ng-template>
+    
+</section>
+
+<section>
+
+    <ng-template #templateEditar>
+        <div class="modal-header">
+            
+            <h4 class="modal-title pull-left">Editar candidato</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <app-candidato-form></app-candidato-form>
+            </div>
+    </ng-template>
+    
+</section>

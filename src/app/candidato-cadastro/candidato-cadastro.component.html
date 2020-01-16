@@ -10,31 +10,49 @@
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome"
                 placeholder="Nome" class="form-control"
-                [(ngModel)] = "candidato.nome" required> 
+                [(ngModel)] = "candidato.nome" required #nome="ngModel"> 
+            </div>
+
+            <div *ngIf="!nome.valid && nome.touched" class="alert alert-danger" role="alert">
+                O nome é obrigatório
             </div>
 
             <div class="form-group">
                 <label for="vagas">Cidade: </label>
                 <input type="text" id="cidade" name="cidade"
                 placeholder="Cidade" class="form-control"
-                [(ngModel)] = "candidato.cidade" required> 
+                [(ngModel)] = "candidato.cidade" required #cidade="ngModel"> 
+            </div>
+
+            <div *ngIf="!cidade.valid && cidade.touched" class="alert alert-danger" role="alert">
+                A cidade é obrigatória
             </div>
 
             <div class="form-group">
                 <label for="email">E-mail:</label>
                 <input type="text" id="email" name="email"
                 placeholder="E-mail" class="form-control"
-                [(ngModel)] = "candidato.email" required email> 
+                [(ngModel)] = "candidato.email" required email #email="ngModel" > 
+            </div>
+
+            <div *ngIf="!email.valid && email.touched" class="alert alert-danger" role="alert">
+                O e-mail é inválido
             </div>
 
             <div class="form-group">
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha"
                 placeholder="Senha" class="form-control"
-                [(ngModel)] = "candidato.senha" required> 
+                [(ngModel)] = "candidato.senha" required #senha="ngModel"> 
+            </div>
+            
+            <div *ngIf="!senha.valid && senha.touched" class="alert alert-danger" role="alert">
+                A senha é obrigatória
             </div>
 
             <button type="submit" class="btn btn-success"
-            (click) = "criar()">Cadastrar</button>
+            (click) = "criar()"  [disabled]="formCandidato.invalid">Cadastrar</button>
+
+
         </form>
     </div>

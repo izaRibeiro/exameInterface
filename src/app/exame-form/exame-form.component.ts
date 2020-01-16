@@ -81,4 +81,9 @@ export class ExameFormComponent implements OnInit {
       alert("Não é possível efetuar a edição com campos vazios");
     }
   }
+
+  voltar(){
+    this.router.navigateByUrl('listagemExames');
+  }
+
 }

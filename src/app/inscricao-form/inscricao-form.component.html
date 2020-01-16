@@ -1,5 +1,6 @@
 <router-outlet></router-outlet>
-<h2>Efetuar Edição da Nota</h2>
+<br>
+<h2 class="titulo">Editar da Nota</h2>
 
 <section>
     <div class="container">
@@ -12,8 +13,12 @@
             placeholder="Nota" class="form-control"
             [(ngModel)]="inscricao.nota" required> 
         </div>
+        
         <button type="submit" class="btn btn-success"
         (click)="adicionarNota(inscricao)">Atualizar Nota</button>
+
+        <button type="submit" class="btn btn-danger"
+        (click) = "voltar()" >Voltar</button>
     </form>
     </div>
 </section>

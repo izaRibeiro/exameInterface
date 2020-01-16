@@ -1,9 +1,10 @@
+import { AuthService } from './../auth.service';
 import { CandidatoFormComponent } from './../candidato-form/candidato-form.component';
 import { CandidatoCadastroComponent } from './../candidato-cadastro/candidato-cadastro.component';
 import { AppModule } from './../app.module';
 import { timer } from 'rxjs';
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, TemplateRef, Inject } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { Candidato } from '../model/candidato';
 import { CandidatoService } from './../candidato.service';
@@ -22,22 +23,27 @@ export class CandidatoListagemComponent implements OnInit {
   modalRef: BsModalRef;
   deleteModalRef: BsModalRef;
   @ViewChild('deleteModal', {static: true}) deleteModal: BsModalRef;
-
+  usuarioAutenticado;
+  candidatoAutenticado;
+  exameAutenticado;
   
   constructor(private candidatoService: CandidatoService,
+    private route: ActivatedRoute,
     private router: Router,
     private modalService: BsModalService,
     private service: CandidatoService
+    
 ) { }
 
   ngOnInit() {
+    this.usuarioAutenticado = sessionStorage.getItem("usuarioAutenticado");
+    this.candidatoAutenticado = sessionStorage.getItem("usuarioCandidato");
+    this.exameAutenticado = sessionStorage.getItem("usuarioExame");
+    
     this.listar();
     this.novo = false;
 
-    const candidato = this.service.carregarPeloId(this.id);
-    candidato.subscribe(candidato => {
-          this.update(candidato);
-        });
+
   }
 
   listar(){
@@ -95,8 +101,27 @@ export class CandidatoListagemComponent implements OnInit {
   }
 
   onEdit(id, template){
-    //this.router.navigate(['candidatos', id]);
-    this.modalRef = this.modalService.show(template);
+    this.router.navigate(['candidatos', id]);
+    
+    //this.modalRef = this.modalService.show(template);
+
+
+    //console.log(this.candidato);
+
+   /*console.log("dfihsiufhsdifu");
+    this.id = id;
+    if(this.id != null){
+      console.log('id: ' + this.id);
+    }
+
+    const candidato = this.service.carregarPeloId(this.id);
+    console.log(candidato);
+    console.log(this.candidato);
+    candidato.subscribe(candidato => {
+          this.update(candidato);
+        });
+
+    this.modalRef = this.modalService.show(template);*/
   }
 
   editar(){
@@ -116,7 +141,6 @@ export class CandidatoListagemComponent implements OnInit {
       });
       
    }else{
-      
       alert("Não é possível efetuar a edição com campos vazios");
     }
 }

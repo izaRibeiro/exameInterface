@@ -1,8 +1,8 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CandidatoService } from '../candidato.service';
 import { Candidato } from '../model/candidato';
-import { CandidatoListagemComponent } from '../candidato-listagem/candidato-listagem.component';
+
 
 @Component({
   selector: 'app-candidato-cadastro',
@@ -15,8 +15,7 @@ export class CandidatoCadastroComponent implements OnInit {
   novo: boolean;
 
   constructor(private candidatoService: CandidatoService,
-    private router: Router,
-    private candidatoListagem: CandidatoListagemComponent
+    private router: Router
 ) { }
 
   ngOnInit() {
@@ -24,6 +23,10 @@ export class CandidatoCadastroComponent implements OnInit {
     this.novo = false;
   }
 
+
+  listar(){
+    this.candidatoService.listar().subscribe(dados => this.candidatos = dados);
+  }
 
   criar(){
     console.log(this.candidato.nome);
@@ -37,7 +40,7 @@ export class CandidatoCadastroComponent implements OnInit {
             //this.candidatos.push(resposta);
             this.candidato = new Candidato();
             alert("Candidato cadastrado com sucesso!");
-            this.candidatoListagem.listar();
+            this.listar();
           },
           error: (e)=>console.log(e)
           

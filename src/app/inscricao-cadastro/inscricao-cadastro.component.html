@@ -1,6 +1,6 @@
 
 <div class="container">
-    <form >
+    <form #formInscricao = "ngForm">
 
         <div class="form-group">
             <label for="exame">Identificador do Exame: </label>
@@ -8,11 +8,14 @@
             id="exame" 
             name="exame"
             placeholder="Exame" class="form-control"
-            [(ngModel)]="inscricao.exame" required> 
+            [(ngModel)]="inscricao.exame" required #exame="ngModel"> 
                 <option *ngFor="let exame of exames" [ngValue]="exame.id"> {{exame.nome}}</option>
             </select>
         </div>
 
+        <div *ngIf="!exame.valid && exame.touched" class="alert alert-danger" role="alert">
+            É obrigatório definir o exame
+        </div>
 
         <div class="form-group">
             <label for="candidato">Identificador do Candidato: </label>
@@ -20,12 +23,17 @@
             id="candidato" 
             name="candidato"
             placeholder="Candidato" class="form-control"
-            [(ngModel)]="inscricao.candidato" required> 
+            [(ngModel)]="inscricao.candidato" required #candidato="ngModel"> 
                 <option *ngFor="let candidato of candidatos" [ngValue]="candidato.id"> {{candidato.nome}}</option>
             </select>
         </div>
+
+        <div *ngIf="!candidato.valid && candidato.touched" class="alert alert-danger" role="alert">
+            É obrigatório definir o candidato
+        </div>
+
         <button type="submit" class="btn btn-success"
-        (click)="criar()">Cadastrar</button>
+        (click)="criar()" [disabled]="formInscricao.invalid">Cadastrar</button>
 
 
     </form>

@@ -20,6 +20,10 @@ export class ExameListagemComponent implements OnInit {
   deleteModalRef: BsModalRef;
   @ViewChild('deleteModal' , {static: true}) deleteModal;
 
+  usuarioAutenticado;
+  candidatoAutenticado;
+  exameAutenticado;
+
   constructor(private exameService: ExameService,
     private http: HttpClient,
     private router: Router,
@@ -29,6 +33,10 @@ export class ExameListagemComponent implements OnInit {
 
 
   ngOnInit() {
+    this.usuarioAutenticado = sessionStorage.getItem("usuarioAutenticado");
+    this.candidatoAutenticado = sessionStorage.getItem("usuarioCandidato");
+    this.exameAutenticado = sessionStorage.getItem("usuarioExame");
+    
     this.exame = {};
     this.listar();
     this.novo = false;
