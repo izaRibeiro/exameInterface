@@ -38,7 +38,7 @@
             <button type="submit" class="btn btn-warning" (click)="onEdit(exame.id)">
                 Atualizar
             </button>
-            <button type="submit" class="btn btn-danger" (click) = "onDelete(exame)">
+            <button type="submit" class="btn btn-danger" (click) = "onDelete(exame)" *ngIf="candidatoAutenticado == 'false'">
                 Remover
             </button>
   

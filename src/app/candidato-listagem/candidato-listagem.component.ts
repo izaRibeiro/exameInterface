@@ -19,6 +19,7 @@ export class CandidatoListagemComponent implements OnInit {
   candidatos: Array<any>;
   candidato: Candidato = new Candidato();
   id: number;
+  idSession: string;
   novo: boolean;
   modalRef: BsModalRef;
   deleteModalRef: BsModalRef;
@@ -39,7 +40,9 @@ export class CandidatoListagemComponent implements OnInit {
     this.usuarioAutenticado = sessionStorage.getItem("usuarioAutenticado");
     this.candidatoAutenticado = sessionStorage.getItem("usuarioCandidato");
     this.exameAutenticado = sessionStorage.getItem("usuarioExame");
-    
+    this.idSession = sessionStorage.getItem("id");
+
+    console.log("Candidato autenticado: " + this.candidatoAutenticado);
     this.listar();
     this.novo = false;
 

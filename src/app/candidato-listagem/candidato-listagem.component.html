@@ -26,12 +26,12 @@
 
                 <td>
 
-                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id, templateEditar)">
+                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id, templateEditar)" *ngIf="candidato.id == idSession">
                         Atualizar
                     </button>
 
                     <button type="submit" class="btn btn-danger"
-                     (click) = "onDelete(candidato)" *ngIf="!candidatoAutenticado || exameAutenticado">
+                     (click) = "onDelete(candidato)" *ngIf="candidatoAutenticado == 'false'">
                         Remover 
                     </button>
                 </td>

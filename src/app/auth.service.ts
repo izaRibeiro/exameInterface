@@ -39,6 +39,8 @@ export class AuthService {
     sessionStorage.setItem("usuarioAutenticado", "false");
     sessionStorage.setItem("usuarioCandidato", "false");
     sessionStorage.setItem("usuarioExame", "false");
+    sessionStorage.setItem("id", "");
+    
 
     if(usuarioSelecionado == "candidato"){
 
@@ -72,6 +74,8 @@ export class AuthService {
             sessionStorage.setItem("usuarioAutenticado", "true");
             sessionStorage.setItem("usuarioCandidato", "true");
 
+            sessionStorage.setItem("id", res.id.toString());
+
             alert("Login efetuado com sucesso!!");
 
             this.router.navigateByUrl('');
@@ -96,6 +100,8 @@ export class AuthService {
 
             sessionStorage.setItem("usuarioAutenticado", "true");
             sessionStorage.setItem("usuarioExame", "true");
+
+            sessionStorage.setItem("id", res.id.toString());
 
             console.log(sessionStorage.getItem("usuarioAutenticado"));
 
