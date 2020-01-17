@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { CandidatoListagemComponent } from './../candidato-listagem/candidato-listagem.component';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { CandidatoService } from '../candidato.service';
 import { Candidato } from '../model/candidato';
@@ -12,7 +13,7 @@ import { Candidato } from '../model/candidato';
 export class CandidatoCadastroComponent implements OnInit {
   candidatos: Array<any>;
   candidato: any;
-  novo: boolean;
+  @Output() concluido: EventEmitter<boolean> = new EventEmitter(false);
 
   constructor(private candidatoService: CandidatoService,
     private router: Router
@@ -20,7 +21,6 @@ export class CandidatoCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.candidato =  {};
-    this.novo = false;
   }
 
 
@@ -40,7 +40,8 @@ export class CandidatoCadastroComponent implements OnInit {
             //this.candidatos.push(resposta);
             this.candidato = new Candidato();
             alert("Candidato cadastrado com sucesso!");
-            this.listar();
+            //this.listar();
+            this.concluido.emit(true);
           },
           error: (e)=>console.log(e)
           
@@ -50,14 +51,6 @@ export class CandidatoCadastroComponent implements OnInit {
       }
     }else{
       alert("O e-mail digitado já existe. Por favor, insira outro!");
-    }
-  }
-
-  onNovo(){
-    if(this.novo){
-      this.novo = false;
-    }else{
-      this.novo = true;
     }
   }
 

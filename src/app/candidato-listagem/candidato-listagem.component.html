@@ -26,12 +26,12 @@
 
                 <td>
 
-                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id, templateEditar)" *ngIf="candidato.id == idSession || exameAutenticado == 'true'">
+                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id, templateEditar)" *ngIf="candidato.id == idSession">
                         Atualizar
                     </button>
 
                     <button type="submit" class="btn btn-danger"
-                     (click) = "onDelete(candidato)" *ngIf="candidatoAutenticado == 'false'">
+                     (click) = "onDelete(candidato)" *ngIf="candidato.id == idSession">
                         Remover 
                     </button>
                 </td>
@@ -58,7 +58,7 @@
             </button>
             </div>
             <div class="modal-body">
-                <app-candidato-cadastro></app-candidato-cadastro>
+                <app-candidato-cadastro (concluido)="fecharModal()"></app-candidato-cadastro>
             </div>
     </ng-template>
     

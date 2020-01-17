@@ -134,7 +134,8 @@ export class AuthService {
 
   logout(){
     //sessionStorage.removeItem('usuarioAutenticado');
-    sessionStorage.setItem("usuarioAutenticado", "false");
+    sessionStorage.clear();
+    // sessionStorage.setItem("usuarioAutenticado", "false");
     this.esconderMenu();
     this.router.navigate(['/login']);
   }

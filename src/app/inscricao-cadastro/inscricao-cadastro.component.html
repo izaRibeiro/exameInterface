@@ -17,17 +17,19 @@
             É obrigatório definir o exame
         </div>
 
-        <div class="form-group">
-            <label for="candidato">Identificador do Candidato: </label>
+        <div class="form-group" >
+            <label for="candidato" >Identificador do Candidato: </label>
             <select type="text" 
             id="candidato" 
             name="candidato"
             placeholder="Candidato" class="form-control"
             [(ngModel)]="inscricao.candidato" required #candidato="ngModel"> 
-                <option *ngFor="let candidato of candidatos" [ngValue]="candidato.id"> {{candidato.nome}}</option>
+                <option *ngFor="let candidato of candidatos" 
+                [ngValue]="candidato.id" > {{candidato.nome}}</option>
             </select>
         </div>
 
+       
         <div *ngIf="!candidato.valid && candidato.touched" class="alert alert-danger" role="alert">
             É obrigatório definir o candidato
         </div>

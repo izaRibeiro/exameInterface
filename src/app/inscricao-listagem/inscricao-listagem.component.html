@@ -28,20 +28,19 @@
         <td>Nota</td>
     </tr>
     <tr  *ngFor="let inscricao of inscricoes">
-        <td>{{inscricao.exame}}-{{inscricao.nomeExame}} </td>
-        <td>{{inscricao.candidato}}-{{inscricao.nomeCandidato}}</td>
-        <td>{{inscricao.nota}}</td>
+
+        <td *ngIf="(inscricao.candidato == idSession  || inscricao.exame == idSession)">{{inscricao.exame}}-{{inscricao.nomeExame}} </td>
+        <td *ngIf="inscricao.candidato == idSession  || inscricao.exame == idSession">{{inscricao.candidato}}-{{inscricao.nomeCandidato}}</td>
+        <td *ngIf="inscricao.candidato == idSession  || inscricao.exame == idSession">{{inscricao.nota}}</td>
 
 
-            <button type="submit" class="btn btn-warning" (click)="onEdit(inscricao.exame, inscricao.candidato)"  *ngIf="candidatoAutenticado == 'false'">
+            <button type="submit" class="btn btn-warning" (click)="onEdit(inscricao.exame, inscricao.candidato)"  *ngIf="candidatoAutenticado == 'false' && inscricao.exame == idSession">
                 Atualizar Nota
             </button>
 
-            <button type="submit" class="btn btn-danger" (click) = "onDelete(inscricao)"  *ngIf="inscricao.candidato == idSession  || exameAutenticado == 'true'">
+            <button type="submit" class="btn btn-danger" (click) = "onDelete(inscricao)"  *ngIf="inscricao.candidato == idSession  || inscricao.exame == idSession">
                 Remover
             </button>
-  
-       
     </tr>
 </table>
 

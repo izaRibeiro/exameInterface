@@ -148,15 +148,6 @@ export class CandidatoListagemComponent implements OnInit {
     }
 }
 
-
-  onNovo(){
-    if(this.novo){
-      this.novo = false;
-    }else{
-      this.novo = true;
-    }
-  }
-
   validarEmail(email: string){
     if(this.candidatoService.carregarPeloEmail(email) != null){
       return true;
@@ -164,5 +155,8 @@ export class CandidatoListagemComponent implements OnInit {
     return false;
   }
 
-
+  fecharModal() {
+    this.modalRef.hide();
+    this.listar();
+  }
 }

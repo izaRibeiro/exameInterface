@@ -12,7 +12,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <app-exame-cadastro></app-exame-cadastro>
+            <app-exame-cadastro ></app-exame-cadastro>
           </div>
     </ng-template>
     
@@ -35,10 +35,10 @@
         <td>{{exame.email}}</td>
 
 
-            <button type="submit" class="btn btn-warning" (click)="onEdit(exame.id)" *ngIf="candidatoAutenticado == 'false'">
+            <button type="submit" class="btn btn-warning" (click)="onEdit(exame.id)" *ngIf="candidatoAutenticado == 'false' && exame.id == idSession">
                 Atualizar
             </button>
-            <button type="submit" class="btn btn-danger" (click) = "onDelete(exame)" *ngIf="candidatoAutenticado == 'false'">
+            <button type="submit" class="btn btn-danger" (click) = "onDelete(exame)" *ngIf="candidatoAutenticado == 'false' && exame.id == idSession">
                 Remover
             </button>
   

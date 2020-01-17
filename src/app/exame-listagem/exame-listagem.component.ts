@@ -99,18 +99,15 @@ export class ExameListagemComponent implements OnInit {
     this.router.navigate(['exames', id]);
   }
 
-  onNovo(){
-    if(this.novo){
-      this.novo = false;
-    }else{
-      this.novo = true;
-    }
-  }
-
   validarEmail(email: string){
     if(this.exameService.carregarPeloEmail(email) != null){
       return true;
     }
     return false;
+  }
+
+  fecharModal() {
+    this.modalRef.hide();
+    this.listar();
   }
 }

@@ -20,6 +20,10 @@ export class InscricaoCadastroComponent implements OnInit {
   inscricaoSelecionada : InscricaoListagemComponent;
   exames: Array<any>;
   candidatos: Array<any>;
+  usuarioAutenticado;
+  candidatoAutenticado;
+  exameAutenticado;
+  idSession: string;
 
   constructor(
 
@@ -32,7 +36,11 @@ export class InscricaoCadastroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
- 
+    this.usuarioAutenticado = sessionStorage.getItem("usuarioAutenticado");
+    this.candidatoAutenticado = sessionStorage.getItem("usuarioCandidato");
+    this.exameAutenticado = sessionStorage.getItem("usuarioExame");
+    this.idSession = sessionStorage.getItem("id");
+
     this.exameService.listar().subscribe(dados => this.exames = dados);
     this.candidatoService.listar().subscribe(dados => this.candidatos = dados);
     console.log("Exames: " + this.exames);
