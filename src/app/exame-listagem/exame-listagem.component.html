@@ -1,6 +1,6 @@
 <router-outlet></router-outlet>
 <br>
-<button (click) = "onCreate(template)" class="btn btn-info">Novo Exame</button>
+<button (click) = "onCreate(template)" class="btn btn-info"  *ngIf="candidatoAutenticado == 'false'">Novo Exame</button>
 <section>
     
     <ng-template #template>
@@ -35,7 +35,7 @@
         <td>{{exame.email}}</td>
 
 
-            <button type="submit" class="btn btn-warning" (click)="onEdit(exame.id)">
+            <button type="submit" class="btn btn-warning" (click)="onEdit(exame.id)" *ngIf="candidatoAutenticado == 'false'">
                 Atualizar
             </button>
             <button type="submit" class="btn btn-danger" (click) = "onDelete(exame)" *ngIf="candidatoAutenticado == 'false'">

@@ -6,6 +6,7 @@ import { CandidatoService } from '../candidato.service';
 import { ExameService } from '../exame.service';
 import { InscricaoService } from '../inscricao.service';
 import { Inscricao } from '../model/inscricao';
+import { Candidato } from '../model/candidato';
 
 @Component({
   selector: 'app-inscricao-listagem',
@@ -20,6 +21,10 @@ export class InscricaoListagemComponent implements OnInit {
   exames: Array<any>;
   candidatos: Array<any>;
   novo: boolean;
+  usuarioAutenticado;
+  candidatoAutenticado;
+  exameAutenticado;
+  idSession: string;
   modalRef: BsModalRef;
   deleteModalRef: BsModalRef;
   @ViewChild('deleteModal', {static: true}) deleteModal;
@@ -35,6 +40,11 @@ export class InscricaoListagemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.usuarioAutenticado = sessionStorage.getItem("usuarioAutenticado");
+    this.candidatoAutenticado = sessionStorage.getItem("usuarioCandidato");
+    this.exameAutenticado = sessionStorage.getItem("usuarioExame");
+    this.idSession = sessionStorage.getItem("id");
+
     this.listar();
     this.novo = false;
     
@@ -102,5 +112,6 @@ export class InscricaoListagemComponent implements OnInit {
       this.novo = true;
     }
   }
+
 
 }

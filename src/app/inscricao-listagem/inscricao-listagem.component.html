@@ -28,16 +28,16 @@
         <td>Nota</td>
     </tr>
     <tr  *ngFor="let inscricao of inscricoes">
-        <td>{{inscricao.exame}}</td>
-        <td>{{inscricao.candidato}}</td>
+        <td>{{inscricao.exame}}-{{inscricao.nomeExame}} </td>
+        <td>{{inscricao.candidato}}-{{inscricao.nomeCandidato}}</td>
         <td>{{inscricao.nota}}</td>
 
 
-            <button type="submit" class="btn btn-warning" (click)="onEdit(inscricao.exame, inscricao.candidato)">
+            <button type="submit" class="btn btn-warning" (click)="onEdit(inscricao.exame, inscricao.candidato)"  *ngIf="candidatoAutenticado == 'false'">
                 Atualizar Nota
             </button>
 
-            <button type="submit" class="btn btn-danger" (click) = "onDelete(inscricao)">
+            <button type="submit" class="btn btn-danger" (click) = "onDelete(inscricao)"  *ngIf="inscricao.candidato == idSession  || exameAutenticado == 'true'">
                 Remover
             </button>
   

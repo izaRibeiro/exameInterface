@@ -14,6 +14,7 @@ export class ExameListagemComponent implements OnInit {
   exames: Array<any>;
   exame: any;
   exameSelecionado : ExameListagemComponent;
+  idSession: string;
   erro: string;
   novo: boolean;
   modalRef: BsModalRef;
@@ -36,6 +37,7 @@ export class ExameListagemComponent implements OnInit {
     this.usuarioAutenticado = sessionStorage.getItem("usuarioAutenticado");
     this.candidatoAutenticado = sessionStorage.getItem("usuarioCandidato");
     this.exameAutenticado = sessionStorage.getItem("usuarioExame");
+    this.idSession = sessionStorage.getItem("id");
     
     this.exame = {};
     this.listar();

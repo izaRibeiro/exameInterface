@@ -2,7 +2,7 @@
 
 
 <br>
-<button (click) = "onCreate(template)" class="btn btn-info">Novo Candidato</button>
+<button (click) = "onCreate(template)" class="btn btn-info" *ngIf="candidatoAutenticado == 'false'">Novo Candidato</button>
 
 
 
@@ -26,7 +26,7 @@
 
                 <td>
 
-                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id, templateEditar)" *ngIf="candidato.id == idSession">
+                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id, templateEditar)" *ngIf="candidato.id == idSession || exameAutenticado == 'true'">
                         Atualizar
                     </button>
 
