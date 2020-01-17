@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CandidatoService } from '../candidato.service';
@@ -28,6 +28,8 @@ export class InscricaoListagemComponent implements OnInit {
   modalRef: BsModalRef;
   deleteModalRef: BsModalRef;
   @ViewChild('deleteModal', {static: true}) deleteModal;
+ 
+  
 
 
   constructor(
@@ -112,6 +114,5 @@ export class InscricaoListagemComponent implements OnInit {
       this.novo = true;
     }
   }
-
 
 }

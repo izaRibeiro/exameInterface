@@ -61,6 +61,7 @@ export class ExameListagemComponent implements OnInit {
             this.exames.push(resposta);
             alert("Exame cadastrado com sucesso!");
             this.exame = new Exame();
+            this.modalRef.hide();
           },
           error: (e)=> {
             console.log(e.error)

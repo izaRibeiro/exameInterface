@@ -1,8 +1,7 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Exame } from '../model/exame';
 import { ExameService } from './../exame/exame.service';
-import { EventEmitter } from 'protractor';
 
 
 @Component({
@@ -15,7 +14,7 @@ export class ExameCadastroComponent implements OnInit {
   exames: Array<any>;
   exame: any;
   novo: boolean;
-
+  @Output() concluido: EventEmitter<boolean> = new EventEmitter(false);
 
   constructor(private exameService: ExameService,
     private router: Router
@@ -40,7 +39,7 @@ export class ExameCadastroComponent implements OnInit {
             this.exame = new Exame();
             alert("Exame cadastrado com sucesso!");
             //this.listar();
-  
+            this.concluido.emit(true);
           },
           error: (e)=>console.log(e)
         });

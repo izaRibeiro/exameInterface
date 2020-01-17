@@ -5,7 +5,7 @@ import { ExameService } from './../exame.service';
 import { InscricaoService } from './../inscricao.service';
 import { InscricaoListagemComponent } from './../inscricao-listagem/inscricao-listagem.component';
 import { Inscricao } from './../model/inscricao';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { CandidatoService } from '../candidato.service';
 
 @Component({
