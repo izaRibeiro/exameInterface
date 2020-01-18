@@ -1,8 +1,7 @@
-import { CandidatoListagemComponent } from './../candidato-listagem/candidato-listagem.component';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CandidatoService } from '../candidato.service';
-import { Candidato } from '../model/candidato';
 
 
 @Component({
@@ -28,7 +27,7 @@ export class CandidatoCadastroComponent implements OnInit {
     this.candidatoService.listar().subscribe(dados => this.candidatos = dados);
   }
 
-  criar(){
+  criar(form: FormControl){
     console.log(this.candidato.nome);
     console.log(this.candidato.email);
     console.log(this.candidato.senha);
@@ -37,11 +36,13 @@ export class CandidatoCadastroComponent implements OnInit {
         this.candidatoService.criar(this.candidato).subscribe({
         
           next: resposta => {
-            //this.candidatos.push(resposta);
-            this.candidato = new Candidato();
-            alert("Candidato cadastrado com sucesso!");
-            //this.listar();
+           
+            form.reset();
             this.concluido.emit(true);
+
+            alert("Candidato cadastrado com sucesso!");
+
+            
           },
           error: (e)=>console.log(e)
           
@@ -60,6 +61,5 @@ export class CandidatoCadastroComponent implements OnInit {
     }
     return false;
   }
-
 
 }

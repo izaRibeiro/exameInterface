@@ -1,7 +1,7 @@
-import { environment } from './../environments/environment';
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
-import { ThrowStmt } from '@angular/compiler';
+import { ToastService } from './toast.service';
+import { ToastComponent } from './toast/toast.component';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +10,21 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class AppComponent {
 
- /* constructor(){
-    console.log(environment.apiUrl);
-  }*/
   title = 'enem';
+  constructor(
+    private toastService:ToastService,
+    private authService: AuthService
+    ){
+
+  }
 
   public mostrarMenu: boolean = false;
   public mostrarMenuCandidato: boolean = false;
   public mostrarMenuExame: boolean = false;
 
-  constructor(private authService: AuthService){
+  /*constructor(private authService: AuthService){
     console.log(environment.apiUrl);
-  }
+  }*/
 
   ngOnInit(){
     this.authService.mostrarMenu.subscribe(
@@ -48,4 +51,6 @@ export class AppComponent {
   logout(){
     this.authService.logout();
   }
+
+
 }

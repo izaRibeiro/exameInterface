@@ -15,6 +15,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
+
+
     </head>
     <header>
         <div class="navbar navbar-dark bg-dark shadow-sm">
@@ -32,6 +34,7 @@
             <button (click)="logout()"  *ngIf="mostrarMenu">
                 <strong>Logout </strong>
             </button>
+     
             <br>
             <hr>
             <a [routerLink]="['cadastroCandidato']"  *ngIf="!mostrarMenu"><strong>Cadastrar Candidato</strong></a>
@@ -57,6 +60,8 @@
 <body>
     <router-outlet></router-outlet>
 
+
+   
 
 
 </body>

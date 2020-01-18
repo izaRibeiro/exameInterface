@@ -23,6 +23,8 @@ import { InscricaoCadastroComponent } from './inscricao-cadastro/inscricao-cadas
 import { InscricaoFormComponent } from './inscricao-form/inscricao-form.component';
 import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-listagem.component';
 import { LoginComponent } from './login/login.component';
+import { ToastComponent } from './toast/toast.component';
+import { ToastService } from './toast.service';
 
 
 
@@ -41,7 +43,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     CandidatoCadastroComponent,
     ExameCadastroComponent,
-    InscricaoCadastroComponent
+    InscricaoCadastroComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,7 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     ModalModule.forRoot(),
   ],
-  providers: [ CandidatoService, ExameService, AuthService, AuthGuardService],
+  providers: [ CandidatoService, ExameService, AuthService, AuthGuardService, ToastService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

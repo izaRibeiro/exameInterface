@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Exame } from '../model/exame';
 import { ExameService } from './../exame/exame.service';
 
 
@@ -13,7 +13,6 @@ export class ExameCadastroComponent implements OnInit {
 
   exames: Array<any>;
   exame: any;
-  novo: boolean;
   @Output() concluido: EventEmitter<boolean> = new EventEmitter(false);
 
   constructor(private exameService: ExameService,
@@ -23,23 +22,22 @@ export class ExameCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.exame = {};
-    this.novo = false;
   }
 
   listar(){
     this.exameService.listar().subscribe(dados => this.exames = dados);
   }
 
-  criar(){
+  criar(form: FormControl){
     if(this.validarEmail(this.exame.email)){
       if(this.exame.nome != null && this.exame.vagas != null){
         this.exameService.criar(this.exame).subscribe({
           
           next: resposta => {
-            this.exame = new Exame();
-            alert("Exame cadastrado com sucesso!");
-            //this.listar();
+            form.reset();
             this.concluido.emit(true);
+            alert("Exame cadastrado com sucesso!");
+            
           },
           error: (e)=>console.log(e)
         });
@@ -50,15 +48,6 @@ export class ExameCadastroComponent implements OnInit {
   }else{
     alert("O e-mail digitado já existe. Por favor, insira outro!");
   }
-  }
-
-
-  onNovo(){
-    if(this.novo){
-      this.novo = false;
-    }else{
-      this.novo = true;
-    }
   }
 
   validarEmail(email: string){

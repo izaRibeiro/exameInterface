@@ -1,11 +1,6 @@
-import { AuthService } from './../auth.service';
-import { CandidatoFormComponent } from './../candidato-form/candidato-form.component';
-import { CandidatoCadastroComponent } from './../candidato-cadastro/candidato-cadastro.component';
-import { AppModule } from './../app.module';
-import { timer } from 'rxjs';
-import { Component, OnInit, ViewChild, TemplateRef, Inject } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Candidato } from '../model/candidato';
 import { CandidatoService } from './../candidato.service';
 
@@ -20,7 +15,6 @@ export class CandidatoListagemComponent implements OnInit {
   candidato: Candidato = new Candidato();
   id: number;
   idSession: string;
-  novo: boolean;
   modalRef: BsModalRef;
   deleteModalRef: BsModalRef;
   @ViewChild('deleteModal', {static: true}) deleteModal: BsModalRef;
@@ -44,9 +38,6 @@ export class CandidatoListagemComponent implements OnInit {
 
     console.log("Candidato autenticado: " + this.candidatoAutenticado);
     this.listar();
-    this.novo = false;
-
-
   }
 
   listar(){
@@ -67,6 +58,7 @@ export class CandidatoListagemComponent implements OnInit {
             this.candidatos.push(resposta);
             this.candidato = new Candidato();
             alert("Candidato cadastrado com sucesso!");
+            
             this.modalRef.hide();
           },
           error: (e)=>console.log(e)
@@ -133,8 +125,7 @@ export class CandidatoListagemComponent implements OnInit {
       .subscribe({
         next: resp=>{
           alert("Candidato editado com sucesso!");
-          //this.candidatoService.listar();
-          //this.router.navigateByUrl('listagemCandidatos');
+
           this.listar();
         }, 
         error: (e) =>{
@@ -146,7 +137,7 @@ export class CandidatoListagemComponent implements OnInit {
    }else{
       alert("Não é possível efetuar a edição com campos vazios");
     }
-}
+  }
 
   validarEmail(email: string){
     if(this.candidatoService.carregarPeloEmail(email) != null){

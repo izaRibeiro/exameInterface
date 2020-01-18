@@ -16,7 +16,6 @@ export class ExameListagemComponent implements OnInit {
   exameSelecionado : ExameListagemComponent;
   idSession: string;
   erro: string;
-  novo: boolean;
   modalRef: BsModalRef;
   deleteModalRef: BsModalRef;
   @ViewChild('deleteModal' , {static: true}) deleteModal;
@@ -41,7 +40,6 @@ export class ExameListagemComponent implements OnInit {
     
     this.exame = {};
     this.listar();
-    this.novo = false;
   }
 
   listar(){

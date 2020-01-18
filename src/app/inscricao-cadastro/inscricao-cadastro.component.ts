@@ -1,12 +1,12 @@
-import { ExameListagemComponent } from './../exame-listagem/exame-listagem.component';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { ExameService } from './../exame.service';
-import { InscricaoService } from './../inscricao.service';
-import { InscricaoListagemComponent } from './../inscricao-listagem/inscricao-listagem.component';
-import { Inscricao } from './../model/inscricao';
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CandidatoService } from '../candidato.service';
+import { ExameService } from './../exame.service';
+import { InscricaoListagemComponent } from './../inscricao-listagem/inscricao-listagem.component';
+import { InscricaoService } from './../inscricao.service';
+import { Inscricao } from './../model/inscricao';
 
 @Component({
   selector: 'app-inscricao-cadastro',
@@ -47,14 +47,17 @@ export class InscricaoCadastroComponent implements OnInit {
     console.log("Candidatos: " + this.candidatos);
   }
 
-  criar(){
+  criar(form: FormGroup){
 
     if(this.inscricao.candidato != null && this.inscricao.exame){
       this.inscricaoService.criar(this.inscricao).subscribe(
         () => {
+
+          form.reset();
+          
           alert("Inscrição cadastrada com sucesso!");
-          this.inscricao = new Inscricao();
           this.inscricaoListagem.listar();
+          
         },
         error => {
           console.log(error);
