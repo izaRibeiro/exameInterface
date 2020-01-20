@@ -6,37 +6,44 @@
 
 
 
+        
 
+    <hr>
+    <table class="corpo">
+        <tr>
+            <h2>Listagem dos Candidatos</h2>
 
-        <hr>
-        <h2>Listagem dos Candidatos</h2>
+            <input class="form-control" type="text" name="pesquisa" [(ngModel)]="textopesquisa" autocomplete="off" placeholder=" Barra de Pesquisa">
 
-        <table class="table">
-            <tr>
-                <td>Id</td>
-                <td>Nome</td>
-                <td>Cidade</td>
-                <td>E-mail</td>
-            </tr>
-            <tr  *ngFor="let candidato of candidatos">
-                <td>{{candidato.id}}</td>
-                <td>{{candidato.nome}}</td>
-                <td>{{candidato.cidade}}</td>
-                <td>{{candidato.email}}</td>
+            <table class="table">
+                <tr>
+                    <td>Id</td>
+                    <td>Nome</td>
+                    <td>Cidade</td>
+                    <td>E-mail</td>
+                </tr>
+                <tr  *ngFor="let candidato of candidatos | filter:textopesquisa">
+                    <td>{{candidato.id}}</td>
+                    <td>{{candidato.nome}}</td>
+                    <td>{{candidato.cidade}}</td>
+                    <td>{{candidato.email}} </td>
 
-                <td>
+                    <td>
 
-                    <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id, templateEditar)" *ngIf="candidato.id == idSession">
-                        Atualizar
-                    </button>
+                        <button type="submit" class="btn btn-warning" (click) = "onEdit(candidato.id, templateEditar)" *ngIf="candidato.id == idSession">
+                            Atualizar
+                        </button>
 
-                    <button type="submit" class="btn btn-danger"
-                     (click) = "onDelete(candidato)" *ngIf="candidato.id == idSession">
-                        Remover 
-                    </button>
-                </td>
-            </tr>
-        </table>
+                        <button type="submit" class="btn btn-danger"
+                        (click) = "onDelete(candidato)" *ngIf="candidato.id == idSession">
+                            Remover 
+                        </button>
+                    </td>
+                </tr>
+            </table>
+
+        </tr>
+    </table>
 
         <ng-template #deleteModal>
             <div class="modal-body text-center">

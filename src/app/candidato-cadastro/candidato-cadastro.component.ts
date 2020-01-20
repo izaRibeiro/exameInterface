@@ -15,7 +15,8 @@ export class CandidatoCadastroComponent implements OnInit {
   candidato: any;
   @Output() concluido: EventEmitter<boolean> = new EventEmitter(false);
 
-  constructor(private candidatoService: CandidatoService,
+  constructor(
+    private candidatoService: CandidatoService,
     private router: Router,
     private toastrService: ToastrService
 ) { }
@@ -30,35 +31,30 @@ export class CandidatoCadastroComponent implements OnInit {
   }
 
   criar(form: FormControl){
-    console.log(this.validarEmail(this.candidato.email))
     if(this.validarEmail(this.candidato.email)){
-      if(this.candidato.nome != null && this.candidato.cidade != null){
+      if(this.candidato.nome != null && this.candidato.cidade != null) {
         this.candidatoService.criar(this.candidato).subscribe({
-        
           next: resposta => {
-           
             form.reset();
             this.concluido.emit(true);
 
             this.toastrService.success("Candidato cadastrado com sucesso!");
-            
           },
-          error: (e)=>{
+          error: (e) => {
             this.toastrService.error("Ops... Ocorreu algum erro incomum em sua requisição");
             console.log(e);
           }
-          
         });
-      }else{
+      } else {
           this.toastrService.error("Não é possível efetuar o cadastro com campos vazios");
       }
-    }else{
+    } else {
         this.toastrService.error("O e-mail digitado já existe. Por favor, insira outro!");
     }
   }
 
   validarEmail(email: string){
-    if(this.candidatoService.carregarPeloEmail(email) != null){
+    if (this.candidatoService.carregarPeloEmail(email) != null) {
       return true;
     }
     return false;

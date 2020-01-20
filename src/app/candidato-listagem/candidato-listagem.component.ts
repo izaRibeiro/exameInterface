@@ -4,6 +4,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Candidato } from '../model/candidato';
 import { CandidatoService } from './../candidato.service';
 import { ToastrService } from 'ngx-toastr';
+import { ToastService } from '../toast.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-candidato-listagem',
@@ -28,7 +30,8 @@ export class CandidatoListagemComponent implements OnInit {
     private router: Router,
     private modalService: BsModalService,
     private service: CandidatoService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthService
     
 ) { }
 
@@ -65,6 +68,8 @@ export class CandidatoListagemComponent implements OnInit {
   confirmarDelete(){
     this.remover(this.candidato);
     this.deleteModalRef.hide();
+    this.toastr.success("Candidato deletado com sucesso");
+    this.authService.logout();
   }
 
   negarDelete(){
@@ -85,4 +90,5 @@ export class CandidatoListagemComponent implements OnInit {
     this.modalRef.hide();
     this.listar();
   }
+
 }

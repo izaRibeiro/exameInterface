@@ -48,7 +48,7 @@ export class AppComponent {
   }
 
   logout(){
-    this.toastr.info("Você deslogou");
+    
     this.authService.logout();
   }
 

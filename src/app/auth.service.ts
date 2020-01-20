@@ -6,15 +6,14 @@ import { ExameService } from './exame.service';
 import { Candidato } from './model/candidato';
 import { Exame } from './model/exame';
 import { Usuario } from './model/usuario';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  //private usuarioAutenticado: boolean = false;
-  private usuarioAutenticado = JSON.parse(sessionStorage.getItem("usuarioAutenticado") || "false");
+  private usuarioAutenticado = JSON.parse(sessionStorage.getItem('usuarioAutenticado') || 'false');
 
   mostrarMenu = new EventEmitter<boolean>();
   mostrarMenuCandidato = new EventEmitter<boolean>();
@@ -32,123 +31,104 @@ export class AuthService {
     private toastrService: ToastrService
   ) { }
 
-  fazerLogin(usuario: Usuario, usuarioSelecionado){
+  fazerLogin(usuario: Usuario, usuarioSelecionado) {
 
 
     this.mostrarMenu.emit(false);
     this.mostrarMenuCandidato.emit(false);
     this.mostrarMenuExame.emit(false);
-    sessionStorage.setItem("usuarioAutenticado", "false");
-    sessionStorage.setItem("usuarioCandidato", "false");
-    sessionStorage.setItem("usuarioExame", "false");
-    sessionStorage.setItem("id", "");
-    
+    sessionStorage.setItem('usuarioAutenticado', 'false');
+    sessionStorage.setItem('usuarioCandidato', 'false');
+    sessionStorage.setItem('usuarioExame', 'false');
+    sessionStorage.setItem('id', '');
 
-    if(usuarioSelecionado == "candidato"){
-
+    if (usuarioSelecionado === 'candidato') {
       this.defineCandidato(usuario);
       this.logarCandidato(this.candidato);
-    }else{
+    } else if (usuarioSelecionado === 'exame') {
       this.defineExame(usuario);
       this.logarExame(this.exame);
+    } else {
+      this.toastrService.error('Tipo de usuário indefinido');
     }
   }
 
 
-  defineCandidato(usuario: Usuario){
+  defineCandidato(usuario: Usuario) {
     this.candidato.email = usuario.email;
     this.candidato.senha = usuario.senha;
   }
 
-  
-  defineExame(usuario: Usuario){
+  defineExame(usuario: Usuario) {
     this.exame.email = usuario.email;
     this.exame.senha = usuario.senha;
   }
 
-  logarCandidato(candidato: Candidato){
-      this.candidatoService.carregarPeloEmail(candidato.email).subscribe(
-      (res: Candidato) =>  {
-          if(res.email == candidato.email && res.senha == candidato.senha){
-            this.exibirMenu();
-            this.mostrarMenuCandidato.emit(true);
+  logarCandidato(candidato: Candidato) {
+    this.candidatoService.carregarPeloEmail(candidato.email).subscribe(
+      (res: Candidato) => {
 
-            sessionStorage.setItem("usuarioAutenticado", "true");
-            sessionStorage.setItem("usuarioCandidato", "true");
+        this.encorparLogin(res, candidato);
+        sessionStorage.setItem('usuarioCandidato', 'true');
 
-            sessionStorage.setItem("id", res.id.toString());
+      }, err => {
 
-            this.toastrService.success("Login efetuado com sucesso!!");
-
-            this.router.navigateByUrl('');
-            this.usuarioAutenticado = true;
-          }else{
-            this.toastrService.error("E-mail ou senha incorretos");
-            this.usuarioAutenticado = false;
-          }
-      },  err => {
-        this.toastrService.error("E-mail ou senha incorretos");
+        this.toastrService.error('E-mail ou senha incorreto');
         this.usuarioAutenticado = false;
-      }
 
+      }
     );
   }
 
-  logarExame(exame: Exame){
-      this.exameService.carregarPeloEmail(exame.email).subscribe(
-      (res: Exame) =>  {
-          if(res.email == exame.email && res.senha == exame.senha){
-            this.exibirMenu();
+  logarExame(exame: Exame) {
+    this.exameService.carregarPeloEmail(exame.email).subscribe(
+      (res: Exame) => {
 
-            sessionStorage.setItem("usuarioAutenticado", "true");
-            sessionStorage.setItem("usuarioExame", "true");
+        this.encorparLogin(res, exame);
+        sessionStorage.setItem('usuarioExame', 'true');
 
-            sessionStorage.setItem("id", res.id.toString());
+      }, err => {
 
-            console.log(sessionStorage.getItem("usuarioAutenticado"));
+        this.toastrService.error('E-mail ou senha incorretos');
 
-            this.toastrService.success("Login efetuado com sucesso!!");
-            this.router.navigateByUrl('');
-            this.usuarioAutenticado = true;
-
-          }else{
-            this.toastrService.error("E-mail ou senha incorretos");
-            sessionStorage.setItem("usuarioAutenticado", "false");
-            this.usuarioAutenticado = false;
-
-          }
-      },  err => {
-        this.toastrService.error("E-mail ou senha incorretos");
-        this.usuarioAutenticado = false;
       }
-
     );
   }
 
+  encorparLogin(res, usuario) {
+    if (res.email === usuario.email && res.senha === usuario.senha) {
+      this.exibirMenu();
 
-  
-  exibirMenu(){
+      sessionStorage.setItem('usuarioAutenticado', 'true');
+
+      sessionStorage.setItem('id', res.id.toString());
+
+      this.toastrService.success('Login efetuado com sucesso!!');
+      this.router.navigateByUrl('');
+      this.usuarioAutenticado = true;
+    } else {
+      this.toastrService.error('E-mail ou senha incorretos');
+    }
+  }
+
+  exibirMenu() {
     this.mostrarMenu.emit(true);
   }
 
-  esconderMenu(){
+  esconderMenu() {
     this.mostrarMenu.emit(false);
   }
 
-  logout(){
-    //sessionStorage.removeItem('usuarioAutenticado');
+  logout() {
     sessionStorage.clear();
-    // sessionStorage.setItem("usuarioAutenticado", "false");
     this.esconderMenu();
+    this.toastrService.info('Você saiu do sistema');
     this.router.navigate(['/login']);
   }
 
-  autenticarUsuario(){
-    console.log(sessionStorage.getItem("usuarioAutenticado"));
-    this.usuarioAutenticado = sessionStorage.getItem("usuarioAutenticado") ;
+  autenticarUsuario() {
+    this.usuarioAutenticado = sessionStorage.getItem('usuarioAutenticado');
     return this.usuarioAutenticado;
   }
-
-
 
 }

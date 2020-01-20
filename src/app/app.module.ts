@@ -26,7 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { ToastComponent } from './toast/toast.component';
 import { ToastService } from './toast.service';
 import { ToastrModule } from 'ngx-toastr';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -56,7 +56,8 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
-    ToastrModule.forRoot({timeOut: 2500})
+    ToastrModule.forRoot({timeOut: 2500}),
+    Ng2SearchPipeModule
   ],
   providers: [ CandidatoService, ExameService, AuthService, AuthGuardService, ToastService],
   bootstrap: [AppComponent]

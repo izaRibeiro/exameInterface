@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Exame } from '../model/exame';
+import { ToastrService } from 'ngx-toastr';
 import { ExameService } from './../exame.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-exame-listagem',
@@ -25,10 +26,10 @@ export class ExameListagemComponent implements OnInit {
   exameAutenticado;
 
   constructor(private exameService: ExameService,
-    private http: HttpClient,
-    private router: Router,
-    private route: ActivatedRoute,
-    private modalService: BsModalService
+              private router: Router,
+              private modalService: BsModalService,
+              private toastr: ToastrService,
+              private authService: AuthService
     ) { }
 
 
@@ -37,40 +38,39 @@ export class ExameListagemComponent implements OnInit {
     this.candidatoAutenticado = sessionStorage.getItem("usuarioCandidato");
     this.exameAutenticado = sessionStorage.getItem("usuarioExame");
     this.idSession = sessionStorage.getItem("id");
-    
     this.exame = {};
     this.listar();
   }
 
-  listar(){
+  listar() {
     this.exameService.listar().subscribe(dados => this.exames = dados);
   }
 
-  onCreate(template: TemplateRef<any>){
+  onCreate(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
-
-  remover(exame){
+  remover(exame) {
       this.exameService.remover(exame).subscribe(() => this.listar());
-
   }
 
-  onDelete(exame){
+  onDelete(exame) {
     this.exame = exame;
     this.deleteModalRef = this.modalService.show(this.deleteModal, {class: 'modal-sm'});
   }
 
-  confirmarDelete(){
+  confirmarDelete() {
     this.remover(this.exame);
     this.deleteModalRef.hide();
+    this.toastr.success("Exame deletado com sucesso");
+    this.authService.logout();
   }
 
-  negarDelete(){
+  negarDelete() {
     this.deleteModalRef.hide();
   }
 
-  onEdit(id){
+  onEdit(id) {
     this.router.navigate(['exames', id]);
   }
 

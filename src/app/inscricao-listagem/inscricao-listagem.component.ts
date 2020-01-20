@@ -7,6 +7,8 @@ import { ExameService } from '../exame.service';
 import { InscricaoService } from '../inscricao.service';
 import { Inscricao } from '../model/inscricao';
 import { Candidato } from '../model/candidato';
+import { ToastService } from '../toast.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inscricao-listagem',
@@ -20,7 +22,6 @@ export class InscricaoListagemComponent implements OnInit {
   inscricaoSelecionada : InscricaoListagemComponent;
   exames: Array<any>;
   candidatos: Array<any>;
-  novo: boolean;
   usuarioAutenticado;
   candidatoAutenticado;
   exameAutenticado;
@@ -38,7 +39,8 @@ export class InscricaoListagemComponent implements OnInit {
     private candidatoService: CandidatoService,
     private http: HttpClient,
     private router: Router,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -48,12 +50,9 @@ export class InscricaoListagemComponent implements OnInit {
     this.idSession = sessionStorage.getItem("id");
 
     this.listar();
-    this.novo = false;
     
     this.exameService.listar().subscribe(dados => this.exames = dados);
     this.candidatoService.listar().subscribe(dados => this.candidatos = dados);
-    console.log("Exames: " + this.exames);
-    console.log("Candidatos: " + this.candidatos);
   }
 
   listar(){
@@ -80,6 +79,7 @@ export class InscricaoListagemComponent implements OnInit {
   confirmarDelete(){
     this.remover(this.inscricao);
     this.deleteModalRef.hide();
+    this.toastr.success("Inscrição deletada com sucesso")
   }
 
   negarDelete(){

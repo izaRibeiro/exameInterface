@@ -10,10 +10,9 @@ import { Usuario } from './../model/usuario';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
   private candidato: Candidato = new Candidato();
   private usuario: Usuario = new Usuario();
-  private selecaoUsuario: String;
+  private selecaoUsuario: string;
 
   constructor(
     private authService: AuthService

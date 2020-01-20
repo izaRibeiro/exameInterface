@@ -18,34 +18,40 @@
     
 </section>
 
+<div>
 <hr>
-<h2>Listagem dos Exames</h2>
+<table class="corpo">
+  <tr>
+      <h2>Listagem dos Exames</h2>
 
-<table class="table">
-    <tr>
-        <td>Id</td>
-        <td>Nome</td>
-        <td>Vagas</td>
-        <td>E-mail</td>
-    </tr>
-    <tr  *ngFor="let exame of exames">
-        <td>{{exame.id}}</td>
-        <td>{{exame.nome}}</td>
-        <td>{{exame.vagas}}</td>
-        <td>{{exame.email}}</td>
+      <input class="form-control" type="text" name="pesquisa" [(ngModel)]="textopesquisa" autocomplete="off" placeholder=" Barra de Pesquisa">
+
+      <table class="table">
+          <tr>
+              <td>Id</td>
+              <td>Nome</td>
+              <td>Vagas</td>
+              <td>E-mail</td>
+          </tr>
+          <tr  *ngFor="let exame of exames | filter:textopesquisa">
+              <td>{{exame.id}}</td>
+              <td>{{exame.nome}}</td>
+              <td>{{exame.vagas}}</td>
+              <td>{{exame.email}}</td>
 
 
-            <button type="submit" class="btn btn-warning" (click)="onEdit(exame.id)" *ngIf="candidatoAutenticado == 'false' && exame.id == idSession">
-                Atualizar
-            </button>
-            <button type="submit" class="btn btn-danger" (click) = "onDelete(exame)" *ngIf="candidatoAutenticado == 'false' && exame.id == idSession">
-                Remover
-            </button>
-  
-       
-    </tr>
+                  <button type="submit" class="btn btn-warning" (click)="onEdit(exame.id)" *ngIf="candidatoAutenticado == 'false' && exame.id == idSession">
+                      Atualizar
+                  </button>
+                  <button type="submit" class="btn btn-danger" (click) = "onDelete(exame)" *ngIf="candidatoAutenticado == 'false' && exame.id == idSession">
+                      Remover
+                  </button>
+        
+            
+          </tr>
+      </table>
+  </tr>
 </table>
-
 
 <ng-template #deleteModal>
   <div class="modal-body text-center">

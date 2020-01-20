@@ -18,8 +18,12 @@
     
 </section>
 
+<table class="corpo">
+  <tr>
 
 <h2>Listagem das Inscrições</h2>
+
+<input class="form-control" type="text" name="pesquisa" [(ngModel)]="textopesquisa" autocomplete="off" placeholder=" Barra de Pesquisa">
 
 <table class="table">
     <tr>
@@ -27,7 +31,7 @@
         <td>IdCandidato</td>
         <td>Nota</td>
     </tr>
-    <tr  *ngFor="let inscricao of inscricoes">
+    <tr  *ngFor="let inscricao of inscricoes | filter:textopesquisa">
 
         <td *ngIf="(inscricao.candidato == idSession  || inscricao.exame == idSession)">{{inscricao.exame}}-{{inscricao.nomeExame}} </td>
         <td *ngIf="inscricao.candidato == idSession  || inscricao.exame == idSession">{{inscricao.candidato}}-{{inscricao.nomeCandidato}}</td>
@@ -43,7 +47,8 @@
             </button>
     </tr>
 </table>
-
+</tr>
+</table>
 
 <ng-template #deleteModal>
     <div class="modal-body text-center">

@@ -31,8 +31,6 @@ export class InscricaoCadastroComponent implements OnInit {
     private inscricaoService: InscricaoService,
     private exameService: ExameService,
     private candidatoService: CandidatoService,
-    private http: HttpClient,
-    private router: Router,
     private inscricaoListagem: InscricaoListagemComponent,
     private toastr: ToastrService
   ) { }
@@ -45,27 +43,24 @@ export class InscricaoCadastroComponent implements OnInit {
 
     this.exameService.listar().subscribe(dados => this.exames = dados);
     this.candidatoService.listar().subscribe(dados => this.candidatos = dados);
-    console.log("Exames: " + this.exames);
-    console.log("Candidatos: " + this.candidatos);
+
   }
 
-  criar(form: FormGroup){
+  criar(form: FormGroup) {
 
-    if(this.inscricao.candidato != null && this.inscricao.exame){
+    if (this.inscricao.candidato != null && this.inscricao.exame) {
       this.inscricaoService.criar(this.inscricao).subscribe(
         () => {
 
           form.reset();
-          
           this.toastr.success("Inscrição cadastrada com sucesso!");
           this.inscricaoListagem.listar();
-          
         },
         error => {
           console.log(error);
         }
       );
-     }else{
+     } else {
        this.toastr.error("Não é possível efetuar o cadastro com campos vazios");
     }
   }
