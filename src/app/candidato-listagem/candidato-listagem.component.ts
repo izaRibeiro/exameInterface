@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Candidato } from '../model/candidato';
 import { CandidatoService } from './../candidato.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-candidato-listagem',
@@ -26,7 +27,8 @@ export class CandidatoListagemComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private modalService: BsModalService,
-    private service: CandidatoService
+    private service: CandidatoService,
+    private toastr: ToastrService
     
 ) { }
 
@@ -49,28 +51,7 @@ export class CandidatoListagemComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  criar(){
-    if(this.validarEmail(this.candidato.email)){
-      if(this.candidato.nome != null && this.candidato.cidade != null){
-        this.candidatoService.criar(this.candidato).subscribe({
-        
-          next: resposta => {
-            this.candidatos.push(resposta);
-            this.candidato = new Candidato();
-            alert("Candidato cadastrado com sucesso!");
-            
-            this.modalRef.hide();
-          },
-          error: (e)=>console.log(e)
-          
-        });
-      }else{
-        alert("Não é possível efetuar o cadastro com campos vazios");
-      }
-    }else{
-      alert("O e-mail digitado já existe. Por favor, insira outro!");
-    }
-  }
+ 
 
   remover(candidato){
     this.candidatoService.remover(candidato).subscribe(() => this.listar());
@@ -98,52 +79,6 @@ export class CandidatoListagemComponent implements OnInit {
   onEdit(id, template){
     this.router.navigate(['candidatos', id]);
     
-    //this.modalRef = this.modalService.show(template);
-
-
-    //console.log(this.candidato);
-
-   /*console.log("dfihsiufhsdifu");
-    this.id = id;
-    if(this.id != null){
-      console.log('id: ' + this.id);
-    }
-
-    const candidato = this.service.carregarPeloId(this.id);
-    console.log(candidato);
-    console.log(this.candidato);
-    candidato.subscribe(candidato => {
-          this.update(candidato);
-        });
-
-    this.modalRef = this.modalService.show(template);*/
-  }
-
-  editar(){
-    if(this.candidato.nome != null && this.candidato.cidade){
-      this.candidatoService.update(this.id, this.candidato)
-      .subscribe({
-        next: resp=>{
-          alert("Candidato editado com sucesso!");
-
-          this.listar();
-        }, 
-        error: (e) =>{
-          debugger
-          console.log(e.error);
-        }
-      });
-      
-   }else{
-      alert("Não é possível efetuar a edição com campos vazios");
-    }
-  }
-
-  validarEmail(email: string){
-    if(this.candidatoService.carregarPeloEmail(email) != null){
-      return true;
-    }
-    return false;
   }
 
   fecharModal() {

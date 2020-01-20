@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Exame } from '../model/exame';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-exame-form',
@@ -32,7 +33,8 @@ export class ExameFormComponent implements OnInit {
     
     private service: ExameService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
 
     ) { }
 
@@ -72,13 +74,13 @@ export class ExameFormComponent implements OnInit {
         .subscribe({
           next: resp=>{
             console.log('sucesso');
-            alert("Exame editado com sucesso!");
+            this.toastr.success("Exame editado com sucesso!");
             this.router.navigateByUrl("listagemExames");
           }, 
           error: (e)=>console.log(e)
         });
     }else{
-      alert("Não é possível efetuar a edição com campos vazios");
+      this.toastr.error("Não é possível efetuar a edição com campos vazios");
     }
   }
 

@@ -7,6 +7,7 @@ import { ExameService } from './../exame.service';
 import { InscricaoListagemComponent } from './../inscricao-listagem/inscricao-listagem.component';
 import { InscricaoService } from './../inscricao.service';
 import { Inscricao } from './../model/inscricao';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inscricao-cadastro',
@@ -32,7 +33,8 @@ export class InscricaoCadastroComponent implements OnInit {
     private candidatoService: CandidatoService,
     private http: HttpClient,
     private router: Router,
-    private inscricaoListagem: InscricaoListagemComponent
+    private inscricaoListagem: InscricaoListagemComponent,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class InscricaoCadastroComponent implements OnInit {
 
           form.reset();
           
-          alert("Inscrição cadastrada com sucesso!");
+          this.toastr.success("Inscrição cadastrada com sucesso!");
           this.inscricaoListagem.listar();
           
         },
@@ -64,7 +66,7 @@ export class InscricaoCadastroComponent implements OnInit {
         }
       );
      }else{
-      alert("Não é possível efetuar o cadastro com campos vazios");
+       this.toastr.error("Não é possível efetuar o cadastro com campos vazios");
     }
   }
 

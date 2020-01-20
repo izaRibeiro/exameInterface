@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CandidatoService } from '../candidato.service';
 import { Candidato } from '../model/candidato';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-candidato-form',
@@ -20,7 +21,8 @@ export class CandidatoFormComponent implements OnInit {
     private candidatoService: CandidatoService,
     private route: ActivatedRoute,
     private service: CandidatoService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -45,7 +47,7 @@ export class CandidatoFormComponent implements OnInit {
         this.candidatoService.update(this.id, this.candidato)
         .subscribe({
           next: resp=>{
-            alert("Candidato editado com sucesso!");
+            this.toastr.success("Candidato editado com sucesso!");
             this.candidatoService.listar();
             this.router.navigateByUrl('listagemCandidatos');
           }, 
@@ -56,8 +58,7 @@ export class CandidatoFormComponent implements OnInit {
         });
         
      }else{
-        
-        alert("Não é possível efetuar a edição com campos vazios");
+        this.toastr.error("Não é possível efetuar a edição com campos vazios");
       }
   }
 

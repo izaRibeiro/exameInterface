@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExameService } from './../exame/exame.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class ExameCadastroComponent implements OnInit {
   @Output() concluido: EventEmitter<boolean> = new EventEmitter(false);
 
   constructor(private exameService: ExameService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
     ) { }
 
 
@@ -36,17 +38,17 @@ export class ExameCadastroComponent implements OnInit {
           next: resposta => {
             form.reset();
             this.concluido.emit(true);
-            alert("Exame cadastrado com sucesso!");
+            this.toastrService.success("Exame cadastrado com sucesso!");
             
           },
           error: (e)=>console.log(e)
         });
 
     }else{
-      alert("Não é possível efetuar o cadastro com campos vazios");
+      this.toastrService.error("Não é possível efetuar o cadastro com campos vazios");
     }
   }else{
-    alert("O e-mail digitado já existe. Por favor, insira outro!");
+    this.toastrService.error("O e-mail digitado já existe. Por favor, insira outro!");
   }
   }
 

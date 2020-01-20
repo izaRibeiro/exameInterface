@@ -65,23 +65,6 @@ export class InscricaoListagemComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  criar(){
-
-    if(this.inscricao.candidato != null && this.inscricao.exame){
-      this.inscricaoService.criar(this.inscricao).subscribe(
-        () => {
-          this.listar();
-          alert("Inscrição cadastrada com sucesso!");
-          this.inscricao = new Inscricao();
-        },
-        error => {
-          console.log(error);
-        }
-      );
-     }else{
-      alert("Não é possível efetuar o cadastro com campos vazios");
-    }
-  }
 
   remover(inscricao){
     this.inscricaoService.remover(inscricao).subscribe(() => {
@@ -107,12 +90,5 @@ export class InscricaoListagemComponent implements OnInit {
     this.router.navigate(['exameCandidato', exame, candidato]);
   }
 
-  onNovo(){
-    if(this.novo){
-      this.novo = false;
-    }else{
-      this.novo = true;
-    }
-  }
 
 }

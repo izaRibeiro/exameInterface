@@ -50,30 +50,6 @@ export class ExameListagemComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  criar(){
-    if(this.validarEmail(this.exame.email)){
-      if(this.exame.nome != null && this.exame.vagas != null){
-        this.exameService.criar(this.exame).subscribe({
-          
-          next: resposta => {
-            this.exames.push(resposta);
-            alert("Exame cadastrado com sucesso!");
-            this.exame = new Exame();
-            this.modalRef.hide();
-          },
-          error: (e)=> {
-            console.log(e.error)
-            this.erro = e.error.body;
-          }
-        });
-
-    }else{
-      alert("Não é possível efetuar o cadastro com campos vazios");
-    }
-  }else{
-    alert("O e-mail digitado já existe. Por favor, insira outro!");
-  }
-  }
 
   remover(exame){
       this.exameService.remover(exame).subscribe(() => this.listar());
@@ -98,12 +74,6 @@ export class ExameListagemComponent implements OnInit {
     this.router.navigate(['exames', id]);
   }
 
-  validarEmail(email: string){
-    if(this.exameService.carregarPeloEmail(email) != null){
-      return true;
-    }
-    return false;
-  }
 
   fecharModal() {
     this.modalRef.hide();

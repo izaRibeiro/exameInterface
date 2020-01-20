@@ -3,6 +3,7 @@ import { Inscricao } from '../model/inscricao';
 import { FormGroup } from '@angular/forms';
 import { InscricaoService } from '../inscricao.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inscricao-form',
@@ -21,7 +22,8 @@ export class InscricaoFormComponent implements OnInit {
   constructor(
     private inscricaoService: InscricaoService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -48,8 +50,9 @@ export class InscricaoFormComponent implements OnInit {
           this.inscricaoService.adicionarNota(this.inscricao, this.idexame, this.idcandidato)
           .subscribe({
             next: resp=>{
-              console.log('sucesso');
-              alert("Nota editada com sucesso!");
+              
+              this.toastr.success("Nota editada com sucesso!");
+
               this.router.navigateByUrl("listagemIncricao");
             }, 
             error: (e)=>console.log(e)
@@ -57,7 +60,7 @@ export class InscricaoFormComponent implements OnInit {
         });
 
       }else{
-        alert("A nota deve obrigatóriamente estar entre 0 e 100!");
+        this.toastr.error("A nota deve obrigatóriamente estar entre 0 e 100!");
       }
     }
   }

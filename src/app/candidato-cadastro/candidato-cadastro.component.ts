@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CandidatoService } from '../candidato.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class CandidatoCadastroComponent implements OnInit {
   @Output() concluido: EventEmitter<boolean> = new EventEmitter(false);
 
   constructor(private candidatoService: CandidatoService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
 ) { }
 
   ngOnInit() {
@@ -28,9 +30,7 @@ export class CandidatoCadastroComponent implements OnInit {
   }
 
   criar(form: FormControl){
-    console.log(this.candidato.nome);
-    console.log(this.candidato.email);
-    console.log(this.candidato.senha);
+    console.log(this.validarEmail(this.candidato.email))
     if(this.validarEmail(this.candidato.email)){
       if(this.candidato.nome != null && this.candidato.cidade != null){
         this.candidatoService.criar(this.candidato).subscribe({
@@ -40,18 +40,20 @@ export class CandidatoCadastroComponent implements OnInit {
             form.reset();
             this.concluido.emit(true);
 
-            alert("Candidato cadastrado com sucesso!");
-
+            this.toastrService.success("Candidato cadastrado com sucesso!");
             
           },
-          error: (e)=>console.log(e)
+          error: (e)=>{
+            this.toastrService.error("Ops... Ocorreu algum erro incomum em sua requisição");
+            console.log(e);
+          }
           
         });
       }else{
-        alert("Não é possível efetuar o cadastro com campos vazios");
+          this.toastrService.error("Não é possível efetuar o cadastro com campos vazios");
       }
     }else{
-      alert("O e-mail digitado já existe. Por favor, insira outro!");
+        this.toastrService.error("O e-mail digitado já existe. Por favor, insira outro!");
     }
   }
 

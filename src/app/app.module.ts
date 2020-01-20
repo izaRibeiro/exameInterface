@@ -25,6 +25,7 @@ import { InscricaoListagemComponent } from './inscricao-listagem/inscricao-lista
 import { LoginComponent } from './login/login.component';
 import { ToastComponent } from './toast/toast.component';
 import { ToastService } from './toast.service';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -55,6 +56,7 @@ import { ToastService } from './toast.service';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ModalModule.forRoot(),
+    ToastrModule.forRoot({timeOut: 2500})
   ],
   providers: [ CandidatoService, ExameService, AuthService, AuthGuardService, ToastService],
   bootstrap: [AppComponent]

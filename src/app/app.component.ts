@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 import { ToastService } from './toast.service';
-import { ToastComponent } from './toast/toast.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,8 @@ export class AppComponent {
   title = 'enem';
   constructor(
     private toastService:ToastService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
     ){
 
   }
@@ -22,9 +23,7 @@ export class AppComponent {
   public mostrarMenuCandidato: boolean = false;
   public mostrarMenuExame: boolean = false;
 
-  /*constructor(private authService: AuthService){
-    console.log(environment.apiUrl);
-  }*/
+
 
   ngOnInit(){
     this.authService.mostrarMenu.subscribe(
@@ -49,6 +48,7 @@ export class AppComponent {
   }
 
   logout(){
+    this.toastr.info("Você deslogou");
     this.authService.logout();
   }
 

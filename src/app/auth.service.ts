@@ -6,6 +6,7 @@ import { ExameService } from './exame.service';
 import { Candidato } from './model/candidato';
 import { Exame } from './model/exame';
 import { Usuario } from './model/usuario';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private candidatoService: CandidatoService,
-    private exameService: ExameService
+    private exameService: ExameService,
+    private toastrService: ToastrService
   ) { }
 
   fazerLogin(usuario: Usuario, usuarioSelecionado){
@@ -76,16 +78,16 @@ export class AuthService {
 
             sessionStorage.setItem("id", res.id.toString());
 
-            alert("Login efetuado com sucesso!!");
+            this.toastrService.success("Login efetuado com sucesso!!");
 
             this.router.navigateByUrl('');
             this.usuarioAutenticado = true;
           }else{
-            alert("Nome ou id incorretos");
+            this.toastrService.error("E-mail ou senha incorretos");
             this.usuarioAutenticado = false;
           }
       },  err => {
-        alert("Nome ou id incorretos");
+        this.toastrService.error("E-mail ou senha incorretos");
         this.usuarioAutenticado = false;
       }
 
@@ -105,24 +107,25 @@ export class AuthService {
 
             console.log(sessionStorage.getItem("usuarioAutenticado"));
 
-            alert("Login efetuado com sucesso!!");
-
+            this.toastrService.success("Login efetuado com sucesso!!");
             this.router.navigateByUrl('');
             this.usuarioAutenticado = true;
 
           }else{
-            alert("Nome ou id incorretos");
+            this.toastrService.error("E-mail ou senha incorretos");
             sessionStorage.setItem("usuarioAutenticado", "false");
             this.usuarioAutenticado = false;
 
           }
       },  err => {
-        alert("Nome ou id incorretos");
+        this.toastrService.error("E-mail ou senha incorretos");
         this.usuarioAutenticado = false;
       }
 
     );
   }
+
+
   
   exibirMenu(){
     this.mostrarMenu.emit(true);
