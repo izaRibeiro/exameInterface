@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CandidatoService } from '../candidato.service';
 import { ToastrService } from 'ngx-toastr';
+import { EstadosComponent } from '../estados/estados.component';
 
 
 @Component({

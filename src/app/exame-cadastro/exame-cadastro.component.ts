@@ -1,8 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ExameService } from './../exame/exame.service';
 import { ToastrService } from 'ngx-toastr';
+import { ExameService } from './../exame/exame.service';
 
 
 @Component({

@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild, TemplateRef, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { CandidatoService } from '../candidato.service';
 import { ExameService } from '../exame.service';
 import { InscricaoService } from '../inscricao.service';
 import { Inscricao } from '../model/inscricao';
-import { Candidato } from '../model/candidato';
-import { ToastService } from '../toast.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inscricao-listagem',
@@ -56,7 +54,6 @@ export class InscricaoListagemComponent implements OnInit {
   }
 
   listar(){
-    
     this.inscricaoService.listar().subscribe(dados => this.inscricoes = dados);
   }
 

@@ -1,3 +1,4 @@
+import { EstadosComponent } from './estados/estados.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -45,7 +46,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     CandidatoCadastroComponent,
     ExameCadastroComponent,
     InscricaoCadastroComponent,
-    ToastComponent
+    ToastComponent,
+    EstadosComponent
   ],
   imports: [
     BrowserModule,

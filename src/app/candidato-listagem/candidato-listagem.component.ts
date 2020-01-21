@@ -1,11 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../auth.service';
 import { Candidato } from '../model/candidato';
 import { CandidatoService } from './../candidato.service';
-import { ToastrService } from 'ngx-toastr';
-import { ToastService } from '../toast.service';
-import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-candidato-listagem',
@@ -32,7 +31,6 @@ export class CandidatoListagemComponent implements OnInit {
     private service: CandidatoService,
     private toastr: ToastrService,
     private authService: AuthService
-    
 ) { }
 
   ngOnInit() {
@@ -90,5 +88,6 @@ export class CandidatoListagemComponent implements OnInit {
     this.modalRef.hide();
     this.listar();
   }
+
 
 }

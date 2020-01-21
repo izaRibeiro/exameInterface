@@ -58,13 +58,14 @@ export class InscricaoCadastroComponent implements OnInit {
         },
         error => {
           console.log(error);
+          this.toastr.error("Ops, ocorreu algum erro inesperado");
         }
+        
       );
      } else {
        this.toastr.error("Não é possível efetuar o cadastro com campos vazios");
     }
   }
-
 
 
 }
