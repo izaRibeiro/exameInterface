@@ -1,6 +1,8 @@
 # Enem
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+Summing up, this is a project to improve my knowledge about Angular. This involve the main characteristics about the framework like comunication with a API, routes, components, directives and many others.
+The API used to comunicate can be access by this link: https://github.com/izaRibeiro/exame.
 
 ## Development server
 
